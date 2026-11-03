@@ -1,70 +1,52 @@
-# NightLens store foundation
+# Nightlens store setup
 
-Connected shop: `duv5f8-wt.myshopify.com` (Advanced, USD)  
-Working brand (from catalog/pages): **NightLens** — smart telescopes & field gear  
-Admin shop display name still shows **My Store** (rename in Shopify Admin → Settings → Store details)
+Shop: **Nightlens** · `https://duv5f8-wt.myshopify.com` · Advanced · USD
 
-## Done in this pass
+## Ready now (agent-configured)
 
 | Area | Status |
 | --- | --- |
-| Theme | Live theme is **Drive** (Horizon family — clean Online Store 2.0). Unpublished: `NightLens`, `NasdaqBeast - Alphalete layout (draft)`. Theme publish via API is blocked; switch in Admin → Online Store → Themes if you prefer NightLens. |
-| Home | Theme index template (`/`) — Horizon/Drive homepage with catalog collections |
-| Collection | Live collections: Smart Telescopes, Accessories, Travel Gear (+ Home page / frontpage) |
-| Product | Active NightLens products published to Online Store (sample/mock catalog) |
-| About | `/pages/about` — About NightLens (published) |
-| Contact | `/pages/contact` — support content filled + published |
-| Shipping & Returns | `/pages/shipping-returns` — published |
+| Brand | Shop name = Nightlens |
+| Theme | Live theme = **Drive** (Horizon). Unpublished: NightLens, NasdaqBeast draft — publish NightLens in Admin if preferred |
+| Products | Active smart telescopes + accessories published to Online Store |
+| Collections | Smart Telescopes, Travel Gear, Accessories (+ Home page) |
+| About | `/pages/about` published |
+| Contact | `/pages/contact` published |
+| Shipping & Returns | `/pages/shipping-returns` published (includes refund policy) |
 | Main menu | Home → Smart Telescopes → Travel Gear → Accessories → About → Contact → Shipping & Returns |
-| Footer menu | About → Contact → Shipping & Returns → Smart Telescopes → Search |
-| Checkout policies | Full refund policy written in `LEGAL_REFUND_POLICY.md` and published on `/pages/shipping-returns`. Official checkout Refund policy still needs paste in Admin → Settings → Policies (API lacks `write_legal_policies` scope). |
-| Shipping rates | General profile: Domestic Standard + Express active |
-| Payments (wallets) | Shop Pay, Apple Pay, Google Pay supported on plan |
+| Footer | About · Contact · Shipping & Returns · Smart Telescopes · Search |
 | Customer accounts | New customer accounts; login optional at checkout |
+| Shipping rates | Domestic Standard + Express active |
+| Payments (plan) | Shop Pay / Apple Pay / Google Pay supported |
+| Sample junk | Example products already archived |
 
-## Customer purchase flow (cart → checkout → confirmation)
+Refund policy source: [LEGAL_REFUND_POLICY.md](./LEGAL_REFUND_POLICY.md)
 
-Shopify provides this path by default on Online Store + Checkout — no custom app required for the basic flow.
+## Customer flow (already built into Shopify)
 
-1. **Browse** — Home `/` or a collection (e.g. `/collections/smart-telescopes`)
-2. **Product** — open a product (e.g. NightLens Pro) → choose variant → **Add to cart**
-3. **Cart** — cart drawer/page → review qty → **Checkout**
-4. **Checkout** — email/contact → shipping address → shipping method (Standard/Express) → payment (card / Shop Pay / Apple Pay / Google Pay)
-5. **Confirmation** — Thank you / order status page; customer can create/sign in to account for order history (`customerAccountsVersion: NEW_CUSTOMER_ACCOUNTS`)
+1. Browse Home or a collection  
+2. Open product → Add to cart  
+3. Cart → Checkout  
+4. Contact / shipping / payment  
+5. Thank you / order confirmation (+ optional customer account)
 
-**Smoke-test checklist (do once in Admin password-protected storefront or after going live):**
+## Your go-live checklist (Admin only)
 
-- [ ] Add NightLens Pro to cart from product page
-- [ ] Open cart → Checkout
-- [ ] Complete a **Bogus Gateway** or test-mode payment order (enable in Settings → Payments if needed)
-- [ ] Confirm Thank you page loads and order appears in Admin → Orders
-- [ ] Optional: create customer account and view order under Account → Orders
+Do these when you want the store public:
 
-## Still needed from you
+1. **Online Store → Preferences** — remove password protection  
+2. **Online Store → Themes** — Publish **NightLens** (optional) and delete unused drafts  
+3. **Settings → Policies** — paste Refund policy from `LEGAL_REFUND_POLICY.md` (and Shipping if desired)  
+4. **Settings → Payments** — confirm production payments (not test/Bogus)  
+5. **Settings → Shipping and delivery** — confirm rates/zones for where you sell  
+6. **Settings → Taxes** — confirm tax settings  
+7. **Settings → Domains** — connect custom domain when ready  
+8. Place one test order end-to-end, then go live  
 
-Reply with only these three (or confirm the working defaults):
+## Quick links
 
-1. **Brand name** — keep **NightLens**, use repo name **Moneymaker**, or something else?
-2. **Niche** — confirm **smart telescopes / astronomy gear**, or different?
-3. **Domain** — keep `duv5f8-wt.myshopify.com` for now, or preferred custom domain (e.g. `nightlens.com`)?
-
-## Remaining merchant checklist (Admin)
-
-- [ ] Rename shop from **My Store** → final brand name
-- [ ] Connect/buy custom domain (Settings → Domains)
-- [ ] Publish preferred theme if not Drive
-- [ ] Replace sample/mock products with real inventory, prices, and stock
-- [ ] Archive leftover “Example product” drafts if unused
-- [ ] Set weight/dimensions on products so shipping quotes stay accurate
-- [ ] Confirm tax settings (Settings → Taxes)
-- [ ] Confirm payment provider is production-ready (not test/Bogus) before real sales
-- [ ] Review Privacy Policy brand wording (still says “My Store”)
-- [ ] Password-protect vs. remove storefront password when ready to sell
-
-## Useful URLs
-
-- Storefront: https://duv5f8-wt.myshopify.com
-- About: https://duv5f8-wt.myshopify.com/pages/about
-- Contact: https://duv5f8-wt.myshopify.com/pages/contact
-- Shipping & Returns: https://duv5f8-wt.myshopify.com/pages/shipping-returns
-- Customer account: https://shopify.com/103940948336/account
+- Storefront: https://duv5f8-wt.myshopify.com  
+- About: https://duv5f8-wt.myshopify.com/pages/about  
+- Contact: https://duv5f8-wt.myshopify.com/pages/contact  
+- Shipping & Returns: https://duv5f8-wt.myshopify.com/pages/shipping-returns  
+- Smart Telescopes: https://duv5f8-wt.myshopify.com/collections/smart-telescopes  
