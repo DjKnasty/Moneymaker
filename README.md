@@ -1,9 +1,8 @@
-# NightLens (Shopify store project)
+# Nightlens
 
-Sellable Online Store foundation for the connected Shopify shop.
+Shopify store project for Nightlens smart telescopes.
 
-See **[STORE_SETUP.md](./STORE_SETUP.md)** for what is configured, the cart → checkout → confirmation flow, and the remaining checklist.
+- Setup + go-live checklist: [STORE_SETUP.md](./STORE_SETUP.md)
+- Refund policy (paste into Admin → Policies): [LEGAL_REFUND_POLICY.md](./LEGAL_REFUND_POLICY.md)
 
-Refund policy draft (storefront + paste-ready for checkout): **[LEGAL_REFUND_POLICY.md](./LEGAL_REFUND_POLICY.md)**.
-
-**Still needed from you:** preferred custom domain (shop renamed to Nightlens; niche = smart telescopes).
+Storefront: https://duv5f8-wt.myshopify.com
