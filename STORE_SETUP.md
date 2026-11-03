@@ -17,7 +17,7 @@ Admin shop display name still shows **My Store** (rename in Shopify Admin → Se
 | Shipping & Returns | `/pages/shipping-returns` — published |
 | Main menu | Home → Smart Telescopes → Travel Gear → Accessories → About → Contact → Shipping & Returns |
 | Footer menu | About → Contact → Shipping & Returns → Smart Telescopes → Search |
-| Checkout policies | Page content exists at `/pages/shipping-returns`. Official checkout Shipping/Refund policies need Admin → Settings → Policies (API lacks `write_legal_policies` scope). |
+| Checkout policies | Full refund policy written in `LEGAL_REFUND_POLICY.md` and published on `/pages/shipping-returns`. Official checkout Refund policy still needs paste in Admin → Settings → Policies (API lacks `write_legal_policies` scope). |
 | Shipping rates | General profile: Domestic Standard + Express active |
 | Payments (wallets) | Shop Pay, Apple Pay, Google Pay supported on plan |
 | Customer accounts | New customer accounts; login optional at checkout |
