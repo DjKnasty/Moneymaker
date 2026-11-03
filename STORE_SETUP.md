@@ -7,7 +7,7 @@ Shop: **Nightlens** · `https://duv5f8-wt.myshopify.com` · Advanced · USD
 | Area | Status |
 | --- | --- |
 | Brand | Shop name = Nightlens |
-| Theme | Live theme = **Drive** (Horizon). Unpublished: NightLens, NasdaqBeast draft — publish NightLens in Admin if preferred |
+| Theme | **NightLens** unpublished theme rebuilt to match top smart-telescope store layout patterns (Seestar / Vaonis / DWARFLAB / mock.shop telescopes-retail): full-bleed dark hero, product grid, shop-by-kit collections, trust strip, sticky header + shipping announcement. Live theme is still **Drive** until you publish NightLens in Admin (API cannot publish themes). Delete NasdaqBeast draft in Admin. |
 | Products | Active smart telescopes + accessories published to Online Store |
 | Collections | Smart Telescopes, Travel Gear, Accessories (+ Home page) |
 | About | `/pages/about` published |
