@@ -7,7 +7,7 @@ Test of the Scenario MCP connector (scenario-labs/skills) on the **free tier** u
 Real store photo, downloaded from duv5f8-wt.myshopify.com:
 
 - `NightLens Pro` (product 15467531960688, handle `precision-reflector-telescope`)
-- File: `test-input/nightlens-pro-front.png` (768x1344 PNG)
+- Original file `nightlens-pro-front.png` (768x1344 PNG), kept locally at `/workspace/nb/scenario/test-input/`
 - Uploaded to Scenario as `asset_JStD641v9yT2v3r7ja7AnmrB`
 
 ## Skills exercised
@@ -49,15 +49,15 @@ Notes:
 - There was **no NightLens logo file in the store**, so the logo was generated from the palette (background `rgb(11,13,18)`, navy `rgb(16,32,74)`, orange `rgb(240,106,27)`). It is a real editable SVG (19 paths, viewBox 2048x1509) and is provisional, not the brand's real mark.
 - `model_recraft-v4-styles-svg` refuses without a style ID or style reference images, so the plain `model_recraft-v4-1-svg` was used.
 
-## Credit ledger — 34.75 of 50 free CU/day
+## Credit ledger — 35.25 of 50 free CU/day
 
 - `model_recraft-v4-1-svg` (logo): **16**
 - `model_openai-gpt-image-2-5-flare` (2 lifestyle scenes): **8**
 - `model_scenario-resize-image` (3 crops): **6**
 - `model_photoroom-background-removal` (packshot): **3**
-- `model_scenario-llm` (fidelity checklist): **1.75**
+- `model_scenario-llm` (fidelity checklist, gate checks, prompt refinement): **2.25**
 
-Note: `consumption_limit_get` reports "unlimited / 0" on the free tier and does not reflect the daily cap. Track spend with the `usage` tool for the current day.
+About 14.75 CU remain today. Note: `consumption_limit_get` reports "unlimited / 0" on the free tier and does not reflect the daily cap. Track spend with the `usage` tool for the current day.
 
 ## Store usability
 
