@@ -42,5 +42,5 @@ Print-ready masters are 4500x6000 PNG on the box at `/workspace/starart/art/`. T
    `bhaeqw-9z` and each poster mapped to a Printify poster product.
 2. **Trial plan.** `Plan: trial — you'll need to upgrade before you can start selling and
    unlock full features`.
-3. **Storefront password** — being removed so the public URL opens.
+3. **Storefront password is still on.** The public URL redirects to /password ("Opening soon"). Shopify does not let a trial store drop password protection, and the toggle (Settings > Online Store > Store access > Password protection) is reachable only from the Shopify admin signed in as the store owner account, karonrobbkk@gmail.com; the browser session this bot can drive is signed in as a different Shopify account with no staff access to bhaeqw-9z.
 4. **`4exkcb-uk`** duplicate store needs Thomas's decision before anything is deleted.
