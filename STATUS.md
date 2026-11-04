@@ -4,7 +4,7 @@ Agents must read the newest file in `summaries/` before touching Thomas's stores
 
 The latest summary is `summaries/2026-11-03-site-check.md`.
 
-Latest morning report: [2026-11-04](morning-reports/2026-11-04.md)
+Latest morning report: [2026-11-04](morning-reports/2026-11-04.md) and [2026-11-04-midday](morning-reports/2026-11-04-midday.md) (midday file is the 1:14 PM ET update).
 
 ## Space Professor scripts
 
