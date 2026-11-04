@@ -57,5 +57,15 @@ These are from the same report but cannot be implemented in a theme file:
 
 - `summaries/2026-11-04-nasdaqbeast-draft-report-implementation.md` — this record.
 - `shopify/nasdaqbeast-draft/templates/index.json` — the exact homepage JSON written to the draft theme, so the repo holds the page as applied. Re-applying it reproduces the theme state above.
+- `jobs/nasdaqbeast-draft-report.md` — the job spec, stating that all work and commits go into this repo and that a failed push is a failed job, not a finished one.
+- `STATUS.md` — latest summary pointer.
 
-Both are committed and pushed to `main` in `DjKnasty/Moneymaker`; the job is not complete until they are.
+All are committed and pushed to `main` in `DjKnasty/Moneymaker`.
+
+## Commits
+
+- `80d5ee2` — change record
+- `5fefdf4` — applied homepage JSON
+- `fd77c1f` — record updated with the repo file list
+- `fca4635` — STATUS.md pointer
+- `22adc11` — job spec with the mandatory commit-and-push rule
