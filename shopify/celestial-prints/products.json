@@ -1,0 +1,52 @@
+{
+  "store_intent": "Celestial Prints Shop — Shopify store, Printify POD, unframed astronomy posters",
+  "filler_to_delete": [
+    "Celestial Globe Map Deep Navy Print ($64)",
+    "zodiac / astrological calendar print (navy and gold)",
+    "Orion Constellation Gold Accent Print ($58)",
+    "Moon Phases Chart Matte Print ($54)",
+    "Solar System Vintage Engraving Print ($68)",
+    "any other builder sample product or price not in keep list"
+  ],
+  "keep": [
+    {
+      "title": "Ursa Major Constellation Print",
+      "option": "Size",
+      "variants": [
+        { "title": "18x24 in", "price": "44.99", "sku": "CP-URSA-1824" },
+        { "title": "24x36 in", "price": "64.99", "sku": "CP-URSA-2436" }
+      ],
+      "vendor": "Printify",
+      "productType": "Poster",
+      "tags": ["constellation", "star chart", "astronomy", "wall art", "vintage"],
+      "art": "art/constellation-ursa-major.png",
+      "mockup": "mockups/mockup-constellation.png"
+    },
+    {
+      "title": "Moon Phase Print",
+      "option": "Size",
+      "variants": [
+        { "title": "18x24 in", "price": "44.99", "sku": "CP-MOON-1824" },
+        { "title": "24x36 in", "price": "64.99", "sku": "CP-MOON-2436" }
+      ],
+      "vendor": "Printify",
+      "productType": "Poster",
+      "tags": ["moon", "moon phases", "lunar", "astronomy", "wall art"],
+      "art": "art/moon-phases.png",
+      "mockup": "mockups/mockup-moon-phases.png"
+    },
+    {
+      "title": "Solar System Chart Print",
+      "option": "Size",
+      "variants": [
+        { "title": "18x24 in", "price": "44.99", "sku": "CP-SOLAR-1824" },
+        { "title": "24x36 in", "price": "64.99", "sku": "CP-SOLAR-2436" }
+      ],
+      "vendor": "Printify",
+      "productType": "Poster",
+      "tags": ["solar system", "planets", "astronomy", "wall art", "vintage"],
+      "art": "art/solar-system.png",
+      "mockup": "mockups/mockup-solar-system.png"
+    }
+  ]
+}
