@@ -52,3 +52,10 @@ These are from the same report but cannot be implemented in a theme file:
 
 - Theme file `templates/index.json` size 23,496 bytes; theme `updatedAt` 2026-11-04T18:42:43Z.
 - Theme role confirmed `UNPUBLISHED` after the write.
+
+## Repo files
+
+- `summaries/2026-11-04-nasdaqbeast-draft-report-implementation.md` — this record.
+- `shopify/nasdaqbeast-draft/templates/index.json` — the exact homepage JSON written to the draft theme, so the repo holds the page as applied. Re-applying it reproduces the theme state above.
+
+Both are committed and pushed to `main` in `DjKnasty/Moneymaker`; the job is not complete until they are.
