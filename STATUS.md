@@ -2,11 +2,11 @@
 
 Agents must read the newest file in `summaries/` before touching Thomas's stores. After real work, add a new dated summary in `summaries/`.
 
-The latest summary is `summaries/2026-11-04-nasdaqbeast-draft-report-implementation.md`.
+The latest summary is `summaries/2026-11-05-celestial-suppliers.md`.
 
 Every change a bot makes must be committed and pushed to this repo before the job counts as done. If a push fails, retry it, and if it still fails, report the exact failure instead of marking the job done.
 
-Latest morning report: [2026-11-04](morning-reports/2026-11-04.md) and [2026-11-04-midday](morning-reports/2026-11-04-midday.md) (midday file is the 1:14 PM ET update).
+Latest morning report: [2026-11-05 suppliers](morning-reports/precheck-2026-11-05-suppliers.md). Earlier: [2026-11-04](morning-reports/2026-11-04.md) and [2026-11-04-midday](morning-reports/2026-11-04-midday.md).
 
 ## NasdaqBeast draft page
 
