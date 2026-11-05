@@ -44,3 +44,24 @@ Date: 2026-11-04 (America/New_York). Connector: user-Shopify--account-2 (confirm
 - Store name (still "My Store"); set store policies (Settings > Policies) so footer policy links appear.
 - Check inventory: variants show inventoryQuantity 0 — make sure tracking is off / continue selling for Printify.
 - Note: product copy says Urania's Mirror "1824"; SPECS.md says plate dated 1825. Site copy uses "1820s" on homepage/About.
+
+## Branding (Celestial Atlas Prints)
+
+_2026-11-04 (ET), store bhaeqw-9z. MAIN theme = "Dawn - Celestial" (gid://shopify/OnlineStoreTheme/188589113659); Horizon is unpublished._
+
+Done:
+- Brand art: `celestial-atlas-prints-wordmark.png` (911x135, transparent, #EDE8DC Cormorant Garamond semibold, thin #C2A469 rule with a small star) and `celestial-atlas-prints-favicon.png` (512x512, gold star on #0B1220).
+- Uploaded to Shopify Files (READY):
+  - shopify://shop_images/celestial-atlas-prints-wordmark.png (MediaImage 49555097485627)
+  - shopify://shop_images/celestial-atlas-prints-favicon.png (MediaImage 49555097518395)
+- About page: first sentence now reads "At Celestial Atlas Prints, we make wall art from the history of astronomy." Nothing else changed.
+- No "My Store" text in templates/index.json or any page.
+
+NOT applied (blocked):
+- themeFilesUpsert on the live theme was refused by the connector's safety policy ("Theme file writes against the live storefront are blocked").
+  - config/settings_data.json `current`: logo = shopify://shop_images/celestial-atlas-prints-wordmark.png, logo_width 90 -> 260, favicon = shopify://shop_images/celestial-atlas-prints-favicon.png
+  - sections/footer-group.json: footer text heading "Celestial prints" -> "Celestial Atlas Prints"
+
+Admin TODO:
+- Theme editor > Header: pick the wordmark as the logo and set the width to about 260. Theme settings > Logo/Favicon: pick the favicon. Footer text block: change the heading to "Celestial Atlas Prints".
+- Settings > Store details: rename "My Store" to "Celestial Atlas Prints".
