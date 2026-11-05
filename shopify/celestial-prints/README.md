@@ -9,7 +9,7 @@ not used, nothing deleted).
 - Admin: https://admin.shopify.com/store/bhaeqw-9z
 - Plan: Trial (must be upgraded before selling)
 
-## Products (all ACTIVE, images attached, published to the Online Store)
+## Products (original three; set to DRAFT / hidden on Nov 4, 2026)
 
 | Product | 18x24 | 24x36 | Shopify product id |
 | --- | --- | --- | --- |
@@ -37,10 +37,27 @@ Print-ready masters are 4500x6000 PNG on the box at `/workspace/starart/art/`. T
 
 ## Still open
 
-1. **Printify is not connected.** No Printify connector exists; the word "Printify" is
-   currently only product vendor metadata. Fulfilment needs the Printify app installed on
-   `bhaeqw-9z` and each poster mapped to a Printify poster product.
+1. **Printify listings still need a fix in Printify.** Printify is connected as the
+   fulfillment service. The published listings still use placeholder titles and $21.99
+   18x24-only pricing. See **Nov 4, 2026: Printify cleanup**.
 2. **Trial plan.** `Plan: trial — you'll need to upgrade before you can start selling and
    unlock full features`.
 3. **Storefront password is still on.** The public URL redirects to /password ("Opening soon"). Shopify does not let a trial store drop password protection, and the toggle (Settings > Online Store > Store access > Password protection) is reachable only from the Shopify admin signed in as the store owner account, karonrobbkk@gmail.com; the browser session this bot can drive is signed in as a different Shopify account with no staff access to bhaeqw-9z.
 4. **`4exkcb-uk`** duplicate store needs Thomas's decision before anything is deleted.
+
+## Nov 4, 2026: Printify cleanup
+
+Printify is connected as the fulfillment service. Printify published four new listings:
+
+- **Matte Vertical Posters** — Solar System art, gid `15489779761467`, 18x24 matte at $21.99.
+- **Copy of Matte Vertical Posters** — Moon Phases, gid `15489780777275`, 18x24 matte at $21.99.
+- **Copy of Matte Vertical Posters** — Ursa Major, gid `15489780810043`, 18x24 matte at $21.99.
+- **Kiss-Cut Stickers** — Solar System, gid `15489779794235`.
+
+Decision: keep the Printify listings and fix them in Printify (rename to the original titles, paste the original descriptions, add 24x36, set prices to $44.99 for 18x24 and $64.99 for 24x36, republish).
+
+The original three unlinked products were set to DRAFT (hidden) on Nov 4, 2026:
+
+- Ursa Major Constellation Print `15489621721403`
+- Moon Phase Print `15489621754171`
+- Solar System Chart Print `15489621852475`
