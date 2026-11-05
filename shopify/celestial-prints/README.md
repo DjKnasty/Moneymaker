@@ -84,3 +84,11 @@ The original three unlinked products were set to DRAFT (hidden) on Nov 4, 2026, 
 - Ursa Major Constellation Print `15489621721403` → `ursa-major-constellation-print-original`
 - Moon Phase Print `15489621754171` → `moon-phase-print-original`
 - Solar System Chart Print `15489621852475` → `solar-system-chart-print-original`
+
+The homepage **The prints** grid showed Shopify placeholder (blank shirt) images because the All Prints collection (gid `512813596987`) only held the hidden drafts. The three live Printify posters (`15489780810043`, `15489780777275`, `15489779761467`) were added to All Prints.
+
+The **About the art** homepage section's "View print" links still point at the hidden `*-original` drafts. The live theme cannot be edited via the API, so URL redirects were created. Each of these 301s to the matching live handle without `-original`:
+
+- `/products/ursa-major-constellation-print-original` → `/products/ursa-major-constellation-print`
+- `/products/moon-phase-print-original` → `/products/moon-phase-print`
+- `/products/solar-system-chart-print-original` → `/products/solar-system-chart-print`
