@@ -1,9 +1,44 @@
 {
-  "applied": false,
+  "applied": true,
   "shop": "bhaeqw-9z.myshopify.com",
   "do_not_apply_on": "duv5f8-wt.myshopify.com",
-  "publish": false,
-  "note": "Not sent to Shopify on 2026-11-05. Confirm the shop domain and these product ids before running. Leave the collection and the page unpublished.",
+  "publish": true,
+  "applied_at": "2026-11-05T09:00:00-05:00",
+  "note": "Applied 2026-11-05 after Thomas authorized all morning-report recommendations (t54u). Published collection, page, and main-menu link on bhaeqw-9z only. Theme template written to unpublished Dawn duplicate only. Orion/Printify not created (no Printify connector). NightLens untouched.",
+  "published": {
+    "collection": {
+      "id": "gid://shopify/Collection/512824901947",
+      "title": "Celestial Paintings",
+      "handle": "celestial-paintings",
+      "url": "https://bhaeqw-9z.myshopify.com/collections/celestial-paintings",
+      "status": "published"
+    },
+    "page": {
+      "id": "gid://shopify/Page/166674628923",
+      "title": "Celestial paintings",
+      "handle": "celestial-paintings",
+      "url": "https://bhaeqw-9z.myshopify.com/pages/celestial-paintings",
+      "isPublished": true,
+      "templateSuffix": "celestial-paintings"
+    },
+    "menu": {
+      "menuId": "gid://shopify/Menu/308557218107",
+      "menuItemId": "gid://shopify/MenuItem/820518420795",
+      "title": "Celestial paintings",
+      "url": "/pages/celestial-paintings",
+      "menu": "main-menu"
+    },
+    "theme": {
+      "sourceTheme": "gid://shopify/OnlineStoreTheme/188589113659",
+      "sourceName": "Dawn - Celestial",
+      "sourceRole": "MAIN",
+      "duplicateId": "gid://shopify/OnlineStoreTheme/188599370043",
+      "duplicateName": "Dawn - Celestial (paintings template)",
+      "duplicateRole": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "live_theme_write": "not attempted; connector blocks live theme file writes; file on unpublished duplicate only"
+    }
+  },
   "collection": {
     "title": "Celestial Paintings",
     "handle": "celestial-paintings",
@@ -42,13 +77,18 @@
   "page": {
     "title": "Celestial paintings",
     "handle": "celestial-paintings",
-    "isPublished": false,
+    "isPublished": true,
     "templateSuffix": "celestial-paintings",
     "body_file": "shopify/celestial-prints/pages/celestial-paintings.html"
   },
   "theme_template": {
     "filename": "templates/page.celestial-paintings.json",
-    "theme": "Dawn - Celestial on bhaeqw-9z only",
-    "live_theme_write": "blocked by the connector; put this file on an unpublished theme copy"
+    "theme": "Dawn - Celestial (paintings template) unpublished duplicate on bhaeqw-9z only",
+    "live_theme_write": "blocked by the connector; file is on unpublished theme copy only"
+  },
+  "orion": {
+    "status": "blocked",
+    "reason": "No Printify plugin/connector available; SearchPlugins returned none; MCP status has no Printify server. Did not create a stocked Shopify-only product.",
+    "artwork_repo_path": "shopify/celestial-prints/art/constellation-orion.png"
   }
 }
