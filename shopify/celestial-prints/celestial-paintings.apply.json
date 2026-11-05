@@ -1,0 +1,54 @@
+{
+  "applied": false,
+  "shop": "bhaeqw-9z.myshopify.com",
+  "do_not_apply_on": "duv5f8-wt.myshopify.com",
+  "publish": false,
+  "note": "Not sent to Shopify on 2026-11-05. Confirm the shop domain and these product ids before running. Leave the collection and the page unpublished.",
+  "collection": {
+    "title": "Celestial Paintings",
+    "handle": "celestial-paintings",
+    "sortOrder": "MANUAL",
+    "descriptionHtml": "<p>Star maps and celestial charts, printed when you order them. Unframed paintings on matte fine-art paper. No copy is kept on a shelf.</p><p>Each sheet is one subject from a named plate. These are not a custom night sky for a date or a city.</p>"
+  },
+  "products_in_order": [
+    {
+      "position": 1,
+      "title": "Moon Phase",
+      "id": "gid://shopify/Product/15489780777275",
+      "handle": "moon-phase-print",
+      "why": "Single chart any buyer can use. Original eight-phase artwork, not a generic white-on-black circle row."
+    },
+    {
+      "position": 2,
+      "title": "Ursa Major Constellation Print",
+      "id": "gid://shopify/Product/15489780810043",
+      "handle": "ursa-major-constellation-print",
+      "why": "Named star map. Public-domain Sidney Hall plate, cream atlas paper rather than gold linework on navy."
+    },
+    {
+      "position": 3,
+      "title": "Solar System Chart Print",
+      "id": "gid://shopify/Product/15489779761467",
+      "handle": "solar-system-chart-print",
+      "why": "Celestial atlas painting. Public-domain Cellarius plate, one subject, already a Printify listing."
+    }
+  ],
+  "exclude": [
+    "gid://shopify/Product/15489779794235",
+    "gid://shopify/Product/15489621721403",
+    "gid://shopify/Product/15489621754171",
+    "gid://shopify/Product/15489621852475"
+  ],
+  "page": {
+    "title": "Celestial paintings",
+    "handle": "celestial-paintings",
+    "isPublished": false,
+    "templateSuffix": "celestial-paintings",
+    "body_file": "shopify/celestial-prints/pages/celestial-paintings.html"
+  },
+  "theme_template": {
+    "filename": "templates/page.celestial-paintings.json",
+    "theme": "Dawn - Celestial on bhaeqw-9z only",
+    "live_theme_write": "blocked by the connector; put this file on an unpublished theme copy"
+  }
+}

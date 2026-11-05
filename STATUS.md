@@ -2,11 +2,15 @@
 
 Agents must read the newest file in `summaries/` before touching Thomas's stores. After real work, add a new dated summary in `summaries/`.
 
-The latest summaries are `summaries/2026-11-05.md` (which celestial paintings are selling) and `summaries/2026-11-05-celestial-suppliers.md` (print-on-demand suppliers).
+The latest summaries are `summaries/2026-11-05-celestial-paintings.md` (the paintings page), `summaries/2026-11-05.md` (which celestial paintings are selling), and `summaries/2026-11-05-celestial-suppliers.md` (print-on-demand suppliers).
 
 Every change a bot makes must be committed and pushed to this repo before the job counts as done. If a push fails, retry it, and if it still fails, report the exact failure instead of marking the job done.
 
-Latest morning reports: [2026-11-05 celestial paintings](morning-reports/precheck-2026-11-05-trending-products.md) and [2026-11-05 suppliers](morning-reports/precheck-2026-11-05-suppliers.md). Earlier: [2026-11-04](morning-reports/2026-11-04.md) and [2026-11-04-midday](morning-reports/2026-11-04-midday.md).
+Latest morning reports: [2026-11-05 store builder](morning-reports/precheck-2026-11-05-store-builder.md), [2026-11-05 celestial paintings](morning-reports/precheck-2026-11-05-trending-products.md), and [2026-11-05 suppliers](morning-reports/precheck-2026-11-05-suppliers.md). Earlier: [2026-11-04](morning-reports/2026-11-04.md) and [2026-11-04-midday](morning-reports/2026-11-04-midday.md).
+
+## Celestial paintings page
+
+Prepared Nov 5 for `bhaeqw-9z` only. NightLens was not changed. The page, collection order, and Dawn template are in `shopify/celestial-prints/` (`PAINTINGS.md`). They were not written to Shopify: the celestial shop did not authorize. Nothing is published.
 
 ## NasdaqBeast draft page
 

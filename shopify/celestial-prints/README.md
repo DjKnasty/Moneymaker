@@ -9,6 +9,10 @@ not used, nothing deleted).
 - Admin: https://admin.shopify.com/store/bhaeqw-9z
 - Plan: Trial (must be upgraded before selling)
 
+## Celestial paintings page (2026-11-05)
+
+Star-map and celestial wall-art page for this store only. Three existing Printify posters, moon chart first, no inventory, not yet created in Shopify admin. See [PAINTINGS.md](./PAINTINGS.md).
+
 ## Products
 
 Live Printify posters are 18x24 at **$39.99** (cheaper on purpose than the earlier $44.99 plan). No 24x36 yet. The Solar System kiss-cut sticker stays live at 2/3/4/6 inch, $3.99-$7.99.
