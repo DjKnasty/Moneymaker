@@ -2,15 +2,15 @@
 
 Agents must read the newest file in `summaries/` before touching Thomas's stores. After real work, add a new dated summary in `summaries/`.
 
-The latest summaries are `summaries/2026-11-06.md` (which celestial paintings are selling as of Nov 6) and `summaries/2026-11-06-supplier-finder.md` (print-on-demand wall-art suppliers). The Nov 5 notes remain: `summaries/2026-11-05-celestial-paintings.md` (the paintings page), `summaries/2026-11-05.md`, and `summaries/2026-11-05-celestial-suppliers.md` (the Nov 5 poster check).
+The latest summaries are `summaries/2026-11-06-celestial-paintings.md` (the paintings page draft), `summaries/2026-11-06.md` (which celestial paintings are selling as of Nov 6), and `summaries/2026-11-06-supplier-finder.md` (print-on-demand wall-art suppliers). The Nov 5 notes remain: `summaries/2026-11-05-celestial-paintings.md`, `summaries/2026-11-05.md`, and `summaries/2026-11-05-celestial-suppliers.md`.
 
 Every change a bot makes must be committed and pushed to this repo before the job counts as done. If a push fails, retry it, and if it still fails, report the exact failure instead of marking the job done.
 
-Latest morning reports: [2026-11-06 celestial paintings](morning-reports/precheck-2026-11-06-trending-researcher.md), [2026-11-06 supplier finder](morning-reports/precheck-2026-11-06-supplier-finder.md), [2026-11-05 store builder](morning-reports/precheck-2026-11-05-store-builder.md), [2026-11-05 celestial paintings](morning-reports/precheck-2026-11-05-trending-products.md), and [2026-11-05 suppliers](morning-reports/precheck-2026-11-05-suppliers.md). Earlier: [2026-11-04](morning-reports/2026-11-04.md) and [2026-11-04-midday](morning-reports/2026-11-04-midday.md).
+Latest morning reports: [2026-11-06 store builder](morning-reports/precheck-2026-11-06-store-builder.md), [2026-11-06 celestial paintings](morning-reports/precheck-2026-11-06-trending-researcher.md), and [2026-11-06 supplier finder](morning-reports/precheck-2026-11-06-supplier-finder.md). Earlier: [2026-11-05 store builder](morning-reports/precheck-2026-11-05-store-builder.md), [2026-11-05 celestial paintings](morning-reports/precheck-2026-11-05-trending-products.md), and [2026-11-05 suppliers](morning-reports/precheck-2026-11-05-suppliers.md).
 
 ## Celestial paintings page
 
-Prepared Nov 5 for `bhaeqw-9z` only. NightLens was not changed. The page, collection order, and Dawn template are in `shopify/celestial-prints/` (`PAINTINGS.md`). `PAINTINGS.md` says the page was not written to Shopify. `celestial-paintings.apply.json` later records the collection, page, and menu link as published on Nov 5, with the theme template only on an unpublished Dawn duplicate. The Nov 6 demand note did not open the shop.
+The page, collection, and menu link are live on `bhaeqw-9z` from Nov 5. NightLens was not changed. On Nov 6 the collection already included Orion and the live page body did not. The four-painting draft is in `shopify/celestial-prints/` (`PAINTINGS.md`) and was not uploaded. Live prices were not changed. The same day's demand note did not open the shop and still ranks a custom date-and-place star map ahead of these static plates. That custom map is not on this page.
 
 ## NasdaqBeast draft page
 

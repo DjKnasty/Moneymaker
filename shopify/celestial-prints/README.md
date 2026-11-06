@@ -9,9 +9,11 @@ not used, nothing deleted).
 - Admin: https://admin.shopify.com/store/bhaeqw-9z
 - Plan: Trial (must be upgraded before selling)
 
-## Celestial paintings page (2026-11-05)
+## Celestial paintings page
 
-Star-map and celestial wall-art page for this store only. Three existing Printify posters, moon chart first, no inventory, not yet created in Shopify admin. See [PAINTINGS.md](./PAINTINGS.md).
+Star-map and celestial wall-art page for this store only. No inventory. See [PAINTINGS.md](./PAINTINGS.md).
+
+The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-06 the collection had four Printify posters (Moon Phase, Ursa Major, Solar System, Orion) and the live page body still named three. A four-painting page draft is in the repo and was not uploaded. Live prices were not changed.
 
 ## Products
 

@@ -87,8 +87,50 @@
     "live_theme_write": "blocked by the connector; file is on unpublished theme copy only"
   },
   "orion": {
-    "status": "blocked",
-    "reason": "No Printify plugin/connector available; SearchPlugins returned none; MCP status has no Printify server. Did not create a stocked Shopify-only product.",
-    "artwork_repo_path": "shopify/celestial-prints/art/constellation-orion.png"
+    "status": "live_printify_product_as_of_2026-11-06_read",
+    "earlier_status": "blocked on 2026-11-05 in this file: no Printify connector, so this repo did not create a stocked Shopify-only product",
+    "id": "gid://shopify/Product/15490090008891",
+    "handle": "orion-constellation-print",
+    "published_at": "2026-11-05T09:23:30-05:00",
+    "variant": "18″ x 24″ / Matte",
+    "price": "39.99",
+    "vendor": "Printify",
+    "in_collection": "celestial-paintings",
+    "on_live_page_body": false,
+    "artwork_note": "SPECS.md plate: John Flamsteed, Atlas Céleste, Plate 24, 1776, public domain"
+  },
+  "pending_revision": {
+    "id": "2026-11-06-orion-on-page",
+    "applied": false,
+    "publish": false,
+    "not_sent_to_shopify": true,
+    "shop": "bhaeqw-9z.myshopify.com",
+    "do_not_apply_on": "duv5f8-wt.myshopify.com",
+    "why": "Read-only check on 2026-11-06. The live page body still names three paintings. The Celestial Paintings collection already includes Orion as a fourth Printify poster. This revision adds Orion to the page body and points the Dawn template at four products. It was not uploaded.",
+    "page_body_file": "shopify/celestial-prints/pages/celestial-paintings.html",
+    "theme_template": "shopify/celestial-prints/templates/page.celestial-paintings.json",
+    "theme_template_changes": {
+      "products_to_show": 4,
+      "columns_desktop": 2,
+      "banner_text": "Four unframed charts, printed when you order them.",
+      "where_to_put_it": "Unpublished Dawn duplicate only. Do not write the live theme."
+    },
+    "collection_order_unchanged": [
+      "moon-phase-print",
+      "ursa-major-constellation-print",
+      "solar-system-chart-print",
+      "orion-constellation-print"
+    ],
+    "still_excluded": [
+      "gid://shopify/Product/15489779794235",
+      "gid://shopify/Product/15489621721403",
+      "gid://shopify/Product/15489621754171",
+      "gid://shopify/Product/15489621852475"
+    ],
+    "needs_approval": [
+      "Replace the live page body with the revised HTML.",
+      "Upload the template onto the unpublished Dawn duplicate only.",
+      "Leave prices, collection order, the sticker, the hidden drafts, and NightLens alone."
+    ]
   }
 }
