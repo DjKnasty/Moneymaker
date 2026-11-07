@@ -87,40 +87,101 @@
     "live_theme_write": "blocked by the connector; file is on unpublished theme copy only"
   },
   "orion": {
-    "status": "live_printify_product_as_of_2026-11-06_read",
-    "earlier_status": "blocked on 2026-11-05 in this file: no Printify connector, so this repo did not create a stocked Shopify-only product",
+    "status": "live_printify_product_and_named_on_the_page_as_of_2026-11-07_read",
+    "earlier_status": "blocked on 2026-11-05 in this file: no Printify connector, so this repo did not create a stocked Shopify-only product. On 2026-11-06 the page body still omitted it.",
     "id": "gid://shopify/Product/15490090008891",
     "handle": "orion-constellation-print",
     "published_at": "2026-11-05T09:23:30-05:00",
     "variant": "18″ x 24″ / Matte",
-    "price": "39.99",
+    "price_observed_2026-11-07": "31.99",
+    "compare_at_price_observed_2026-11-07": "39.99",
+    "price_note": "Observed on the public product JSON. This run did not change it. Do not write a price from this file.",
     "vendor": "Printify",
     "in_collection": "celestial-paintings",
-    "on_live_page_body": false,
+    "on_live_page_body": true,
+    "live_page_position": "third, before the solar system",
     "artwork_note": "SPECS.md plate: John Flamsteed, Atlas Céleste, Plate 24, 1776, public domain"
   },
-  "pending_revision": {
+  "superseded_revision": {
     "id": "2026-11-06-orion-on-page",
+    "applied": false,
+    "do_not_apply": true,
+    "why": "Superseded on 2026-11-07. The live page was updated at 2026-11-06T13:07:09-05:00 and already names Orion. Pasting the old three-to-four HTML would put the solar system ahead of Orion and would drop the shorter Orion sentence now on the page."
+  },
+  "pending_revision": {
+    "id": "2026-11-07-page-grid-alignment",
     "applied": false,
     "publish": false,
     "not_sent_to_shopify": true,
     "shop": "bhaeqw-9z.myshopify.com",
+    "shop_name_observed": "Vintage Plate Co.",
     "do_not_apply_on": "duv5f8-wt.myshopify.com",
-    "why": "Read-only check on 2026-11-06. The live page body still names three paintings. The Celestial Paintings collection already includes Orion as a fourth Printify poster. This revision adds Orion to the page body and points the Dawn template at four products. It was not uploaded.",
+    "why": "Read-only check on 2026-11-07. The live page already names four paintings, with Orion before the solar system. The collection still lists the solar system before Orion. The page is still the default page section: no banner and no product grid. The storefront theme is Dawn - Vintage Plate Co. Draft, id 188621029691, role main, Dawn 16.1.1. templates/page.celestial-paintings.json is not on that theme. Shopify admin was not authenticated, so nothing was uploaded.",
     "page_body_file": "shopify/celestial-prints/pages/celestial-paintings.html",
+    "page_body_changes_versus_live": [
+      "Adds a link to /collections/celestial-paintings.",
+      "Adds that a 24 by 36 inch size is not on these listings.",
+      "Keeps the live order: Moon Phase, Ursa Major, Orion, Solar System.",
+      "Does not state a price."
+    ],
+    "live_page": {
+      "id": "gid://shopify/Page/166674628923",
+      "updated_at": "2026-11-06T13:07:09-05:00",
+      "published_at": "2026-11-05T09:00:50-05:00"
+    },
     "theme_template": "shopify/celestial-prints/templates/page.celestial-paintings.json",
+    "theme_template_unchanged_this_run": true,
     "theme_template_changes": {
       "products_to_show": 4,
       "columns_desktop": 2,
+      "collection": "celestial-paintings",
+      "do_not_use_collection": "all-prints",
       "banner_text": "Four unframed charts, printed when you order them.",
-      "where_to_put_it": "Unpublished Dawn duplicate only. Do not write the live theme."
+      "live_theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
+      "live_theme_name": "Dawn - Vintage Plate Co. Draft",
+      "where_to_put_it": "After a yes, copy onto an unpublished duplicate of theme 188621029691 only. Do not write that live theme. Do not publish any theme. The Nov 5 duplicate 188599370043 was copied from the older main theme 188589113659, which is not the theme the storefront is serving now."
     },
-    "collection_order_unchanged": [
+    "collection_observed_order": [
       "moon-phase-print",
       "ursa-major-constellation-print",
       "solar-system-chart-print",
       "orion-constellation-print"
     ],
+    "collection_reorder_proposed": {
+      "apply": false,
+      "collection_id": "gid://shopify/Collection/512824901947",
+      "proposed_order": [
+        "moon-phase-print",
+        "ursa-major-constellation-print",
+        "orion-constellation-print",
+        "solar-system-chart-print"
+      ],
+      "why": "So a featured-collection grid follows the same order as the live page. Do not add botanicals, park posters, the sticker, or the hidden drafts.",
+      "description_html_only_if_reorder_is_approved": "<p>Star maps and celestial charts, printed when you order them. Unframed paintings on matte fine-art paper. No copy is kept on a shelf.</p><p>Each sheet is one subject from a named plate. These are not a custom night sky for a date or a city.</p><p>The four charts, in order, are the moon phases, Ursa Major, Orion, and the Copernican solar system.</p>"
+    },
+    "ursa_year_proposed": {
+      "apply": false,
+      "product_id": "gid://shopify/Product/15489780810043",
+      "handle": "ursa-major-constellation-print",
+      "observed_body_says": "1824",
+      "page_and_sources_json_say": "1825",
+      "proposed_body_html": "<p>A vintage constellation chart of Ursa Major, reproduced from Sidney Hall's Urania's Mirror, published in London in 1825. The engraving shows the Great Bear and its neighboring stars exactly as a nineteenth-century astronomer would have drawn them, hand-colored and set against aged paper.</p>",
+      "do_not_change_price": true
+    },
+    "prices_observed_2026-11-07": {
+      "changed_by_this_run": false,
+      "do_not_write": true,
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "currency": "USD",
+      "variant_title": "18″ x 24″ / Matte",
+      "products": [
+        "moon-phase-print",
+        "ursa-major-constellation-print",
+        "solar-system-chart-print",
+        "orion-constellation-print"
+      ]
+    },
     "still_excluded": [
       "gid://shopify/Product/15489779794235",
       "gid://shopify/Product/15489621721403",
@@ -128,9 +189,10 @@
       "gid://shopify/Product/15489621852475"
     ],
     "needs_approval": [
-      "Replace the live page body with the revised HTML.",
-      "Upload the template onto the unpublished Dawn duplicate only.",
-      "Leave prices, collection order, the sticker, the hidden drafts, and NightLens alone."
+      "Replace the live page body with pages/celestial-paintings.html.",
+      "Reorder the Celestial Paintings collection so Orion is third and the solar system is fourth, and only then add the extra description sentence.",
+      "Change the Ursa Major description year from 1824 to 1825. Do not change its price.",
+      "Upload templates/page.celestial-paintings.json onto an unpublished duplicate of theme 188621029691 only. Do not write the live theme and do not publish."
     ]
   }
 }

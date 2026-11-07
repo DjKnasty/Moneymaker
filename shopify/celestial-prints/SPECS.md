@@ -37,6 +37,7 @@ Full metadata, direct upload URLs, and dimensions are in `sources.json`.
 
 ## Store scope note
 
-`bhaeqw-9z` lists **three** products: Ursa Major, Moon phases, and the Solar System chart.
-The Orion plate (`constellation-orion.png`, Flamsteed 1776) is finished and ready but is
-held back as a fourth listing, so the store matches the three-item plan exactly.
+As of the 2026-11-07 public read, `bhaeqw-9z` sells the Orion plate as well as Ursa Major,
+the moon chart, and the solar-system chart. All four are 18×24 matte Printify posters in
+the Celestial Paintings collection. The shop also sells botanical plates and vintage park
+posters; those are not part of this spec. The Orion file is no longer held back.

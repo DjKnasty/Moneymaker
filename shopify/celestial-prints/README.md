@@ -7,24 +7,24 @@ not used, nothing deleted).
 
 - Public: https://bhaeqw-9z.myshopify.com
 - Admin: https://admin.shopify.com/store/bhaeqw-9z
-- Plan: Trial (must be upgraded before selling)
+- Plan: Trial, as last recorded. Not rechecked on 2026-11-07.
 
 ## Celestial paintings page
 
 Star-map and celestial wall-art page for this store only. No inventory. See [PAINTINGS.md](./PAINTINGS.md).
 
-The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-06 the collection had four Printify posters (Moon Phase, Ursa Major, Solar System, Orion) and the live page body still named three. A four-painting page draft is in the repo and was not uploaded. Live prices were not changed.
+The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-07 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Vintage Plate Co. Draft" (`188621029691`). The page body, updated 2026-11-06, already names four paintings in this order: Moon Phase, Ursa Major, Orion, Solar System. The collection still lists the solar system before Orion. The page still has no banner and no product grid. A smaller page draft, plus a collection-order proposal, is in the repo and was not uploaded. This run did not change a price.
 
 ## Products
 
-Live Printify posters are 18x24 at **$39.99** (cheaper on purpose than the earlier $44.99 plan). No 24x36 yet. The Solar System kiss-cut sticker stays live at 2/3/4/6 inch, $3.99-$7.99.
+Public price read on 2026-11-07 for each poster below: **$31.99**, compare-at **$39.99**, one 18x24 matte variant. Do not write a price from this file. The $39.99 figure is the earlier price Thomas set and is now the compare-at amount. No 24x36 variant is on these listings. The Solar System kiss-cut sticker (`15489779794235`) is not in the 24 public products. This run did not unpublish, delete, or restore it.
 
-| Product | Size | Price | Shopify product id | Handle |
+| Product | Size | Price observed 2026-11-07 | Shopify product id | Handle |
 | --- | --- | --- | --- | --- |
-| Ursa Major Constellation Print | 18x24 | $39.99 | 15489780810043 | `ursa-major-constellation-print` |
-| Moon Phase | 18x24 | $39.99 | 15489780777275 | `moon-phase-print` |
-| Solar System Chart Print | 18x24 | $39.99 | 15489779761467 | `solar-system-chart-print` |
-| Kiss-Cut Stickers (Solar System) | 2/3/4/6 in | $3.99-$7.99 | 15489779794235 | unchanged |
+| Ursa Major Constellation Print | 18x24 | $31.99 (compare-at $39.99) | 15489780810043 | `ursa-major-constellation-print` |
+| Moon Phase | 18x24 | $31.99 (compare-at $39.99) | 15489780777275 | `moon-phase-print` |
+| Solar System Chart Print | 18x24 | $31.99 (compare-at $39.99) | 15489779761467 | `solar-system-chart-print` |
+| Orion Constellation Print | 18x24 | $31.99 (compare-at $39.99) | 15490090008891 | `orion-constellation-print` |
 
 ### Hidden DRAFT originals (set to DRAFT on Nov 4, 2026)
 
@@ -42,11 +42,12 @@ Theme: Horizon (default).
 
 ## Artwork
 
-All three plates are public domain:
-- Ursa Major — Sidney Hall, *Urania's Mirror*, 1825 (Plate IX).
-- Moon phases — drawn programmatically (astronomically correct illuminated limb).
+Source plates:
+- Ursa Major — Sidney Hall, *Urania's Mirror*, 1825 (Plate IX). Public domain.
+- Orion — John Flamsteed, *Atlas Céleste*, Plate 24, 1776. Public domain. On the public page and in the collection as of 2026-11-07.
+- Moon phases — drawn programmatically (astronomically correct illuminated limb). Original artwork.
 - Solar System — Andreas Cellarius, *Harmonia Macrocosmica*, "Scenographia Systematis
-  Copernicani", Amsterdam 1660.
+  Copernicani", Amsterdam 1660. Public domain.
 
 No NASA or ESA imagery: NASA requires written merchandise approval and ESO is the only
 sellable alternative. Canva templates are a licensing conflict for POD posters.
@@ -61,7 +62,7 @@ Print-ready masters are 4500x6000 PNG on the box at `/workspace/starart/art/`. T
    See **Nov 4, 2026: Printify cleanup**.
 2. **Trial plan.** `Plan: trial — you'll need to upgrade before you can start selling and
    unlock full features`.
-3. **Storefront password is still on.** The public URL redirects to /password ("Opening soon"). Shopify does not let a trial store drop password protection, and the toggle (Settings > Online Store > Store access > Password protection) is reachable only from the Shopify admin signed in as the store owner account, karonrobbkk@gmail.com; the browser session this bot can drive is signed in as a different Shopify account with no staff access to bhaeqw-9z.
+3. **Storefront password.** On 2026-11-04 a bot recorded that the public URL redirected to /password ("Opening soon") and that a trial store cannot drop that protection. On 2026-11-07 a request to `/password` ended on the storefront, and the paintings page returned the page itself. The trial plan was not rechecked on 2026-11-07.
 4. **`4exkcb-uk`** duplicate store needs Thomas's decision before anything is deleted.
 
 ## Nov 4, 2026: Printify cleanup
