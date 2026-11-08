@@ -2,11 +2,11 @@
 
 Agents must read the newest file in `summaries/` before touching Thomas's stores. After real work, add a new dated summary in `summaries/`.
 
-The latest storefront summary is `summaries/2026-11-07-celestial-paintings.md` (the paintings page alignment draft). The same day's supplier note is `summaries/2026-11-07-supplier-finder.md`. Still current: `summaries/2026-11-06-celestial-paintings.md`, `summaries/2026-11-06.md`, and `summaries/2026-11-06-supplier-finder.md`. The Nov 5 notes remain: `summaries/2026-11-05-celestial-paintings.md`, `summaries/2026-11-05.md`, and `summaries/2026-11-05-celestial-suppliers.md`.
+The newest file is `summaries/2026-11-08-trending-celestial.md` (a demand note only; the shop was not opened). The latest storefront summary is still `summaries/2026-11-07-celestial-paintings.md` (the paintings page alignment draft). The same day's supplier note is `summaries/2026-11-07-supplier-finder.md`. Still current: `summaries/2026-11-06-celestial-paintings.md`, `summaries/2026-11-06.md`, and `summaries/2026-11-06-supplier-finder.md`. The Nov 5 notes remain: `summaries/2026-11-05-celestial-paintings.md`, `summaries/2026-11-05.md`, and `summaries/2026-11-05-celestial-suppliers.md`.
 
 Every change a bot makes must be committed and pushed to this repo before the job counts as done. If a push fails, retry it, and if it still fails, report the exact failure instead of marking the job done.
 
-Latest morning reports: [2026-11-07 store builder](morning-reports/precheck-2026-11-07-store-builder.md), [2026-11-07 celestial paintings](morning-reports/precheck-2026-11-07-trending-researcher.md), and [2026-11-07 supplier finder](morning-reports/precheck-2026-11-07-supplier-finder.md). Earlier: [2026-11-06 store builder](morning-reports/precheck-2026-11-06-store-builder.md), [2026-11-06 celestial paintings](morning-reports/precheck-2026-11-06-trending-researcher.md), and [2026-11-06 supplier finder](morning-reports/precheck-2026-11-06-supplier-finder.md).
+Latest morning reports: [2026-11-08 celestial paintings](morning-reports/precheck-2026-11-08-trending-researcher.md), [2026-11-07 store builder](morning-reports/precheck-2026-11-07-store-builder.md), [2026-11-07 celestial paintings](morning-reports/precheck-2026-11-07-trending-researcher.md), and [2026-11-07 supplier finder](morning-reports/precheck-2026-11-07-supplier-finder.md). Earlier: [2026-11-06 store builder](morning-reports/precheck-2026-11-06-store-builder.md), [2026-11-06 celestial paintings](morning-reports/precheck-2026-11-06-trending-researcher.md), and [2026-11-06 supplier finder](morning-reports/precheck-2026-11-06-supplier-finder.md).
 
 ## Celestial paintings page
 
