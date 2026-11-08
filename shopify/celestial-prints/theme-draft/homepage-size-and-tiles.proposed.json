@@ -1,0 +1,71 @@
+{
+  "do_not_apply": true,
+  "do_not_paste_over": "templates/index.json",
+  "shop": "bhaeqw-9z.myshopify.com",
+  "do_not_apply_on": "duv5f8-wt.myshopify.com",
+  "theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
+  "theme_name": "Dawn - Vintage Plate Co. Draft",
+  "theme_role_observed": "main",
+  "schema_version_observed": "16.1.1",
+  "where": "After a yes, edit these two sections on an unpublished duplicate of theme 188621029691 only. Do not replace templates/index.json. Do not write the live theme. Do not publish. Do not change a price.",
+  "read_at": "2026-11-08",
+  "why": "The public catalog is 24 products, each with one variant titled 18″ x 24″ / Matte. The homepage size strip names 12×16 and 24×36. The National Parks tile shows the solar-system chart and the Botanical tile shows the moon-phase chart, and both tiles say those lines are not ready even though those collections are already public.",
+  "sizes_section": {
+    "storefront_section_id": "template--27812743119163__sizes",
+    "observed": {
+      "heading": "12 × 16 in  ·  18 × 24 in  ·  24 × 36 in",
+      "text": "Most designs ship in 18 × 24 today. Larger and smaller sizes roll out with each new plate."
+    },
+    "proposed": {
+      "heading": "18 × 24 in",
+      "text": "<p>Every print on sale is 18 by 24 inches, on matte paper, and ships unframed in a rigid tube. A 12 by 16 inch size and a 24 by 36 inch size are not on these listings.</p>"
+    }
+  },
+  "collection_tiles_section": {
+    "storefront_section_id": "template--27812743119163__collections_tiles",
+    "leave_celestial_tile": {
+      "heading": "✦ Celestial",
+      "text": "Star charts and astronomy plates from historic atlases.",
+      "link": "/collections/celestial-paintings",
+      "image_file": "constellation-ursa-major.jpg",
+      "why_leave": "This tile already points at the Celestial Paintings collection. Do not rewrite it to list Orion before the solar system until that collection order is approved. The collection still lists the solar system first."
+    },
+    "national_parks_tile": {
+      "observed": {
+        "heading": "National Parks",
+        "text": "1930s WPA travel posters from the Library of Congress — coming soon.",
+        "link": "/collections/all-prints",
+        "image_file": "solar-system.jpg",
+        "image_alt": "Solar system chart print after Cellarius, 1660, vintage engraving"
+      },
+      "proposed": {
+        "heading": "National Parks",
+        "text": "<p>1930s WPA travel posters from the Library of Congress.</p>",
+        "link": "/collections/vintage-national-parks",
+        "image": "Use an image from a product in vintage-national-parks. Do not keep solar-system.jpg on this card."
+      }
+    },
+    "botanical_tile": {
+      "observed": {
+        "heading": "Botanical",
+        "text": "Vintage botanical plates — planned next for the archive.",
+        "link": "/collections/all-prints",
+        "image_file": "moon-phases.jpg",
+        "image_alt": "Moon phase print, eight lunar phases in a vintage engraving style"
+      },
+      "proposed": {
+        "heading": "Botanical",
+        "text": "<p>Vintage botanical plates, printed on demand.</p>",
+        "link": "/collections/vintage-botanical-plates",
+        "image": "Use an image from a product in vintage-botanical-plates. Do not keep moon-phases.jpg on this card."
+      }
+    }
+  },
+  "not_in_this_proposal": [
+    "No price change.",
+    "No new product.",
+    "The hero may keep solar-system-mockup.jpg. Its buttons already go to All Prints and to the Celestial Paintings collection.",
+    "The featured-prints section already says 18×24. Leave that sentence.",
+    "Do not point the celestial paintings page template at All Prints."
+  ]
+}

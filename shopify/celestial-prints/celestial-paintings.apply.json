@@ -194,5 +194,82 @@
       "Change the Ursa Major description year from 1824 to 1825. Do not change its price.",
       "Upload templates/page.celestial-paintings.json onto an unpublished duplicate of theme 188621029691 only. Do not write the live theme and do not publish."
     ]
+  },
+  "pending_revision_2026_11_08": {
+    "id": "2026-11-08-size-honesty",
+    "applied": false,
+    "publish": false,
+    "not_sent_to_shopify": true,
+    "shop": "bhaeqw-9z.myshopify.com",
+    "do_not_apply_on": "duv5f8-wt.myshopify.com",
+    "why": "Read-only check on 2026-11-08. All 24 public products have a single variant, 18″ x 24″ / Matte, at $31.99 with compare-at $39.99. The homepage size strip still names 12×16 and 24×36. The National Parks tile shows the solar-system chart and the Botanical tile shows the moon chart. The paintings page is still the default page body. Shopify admin was not authenticated, so nothing was uploaded.",
+    "keeps_unapplied": "2026-11-07-page-grid-alignment",
+    "page_body_file": "shopify/celestial-prints/pages/celestial-paintings.html",
+    "page_body_change_versus_2026_11_07_draft": "The size paragraph now also says a 12 by 16 inch size is not on these listings. The live page still omits both that sentence and the collection link.",
+    "theme_template": "shopify/celestial-prints/templates/page.celestial-paintings.json",
+    "theme_template_change": "Adds a rich-text size section after the four-product grid: heading 18 × 24 in, on scheme-4. The grid description now says 18 by 24 inches. Collection remains celestial-paintings. products_to_show remains 4. columns_desktop remains 2.",
+    "homepage_proposal_file": "shopify/celestial-prints/theme-draft/homepage-size-and-tiles.proposed.json",
+    "homepage_proposal": {
+      "apply": false,
+      "do_not_paste_over_index_json": true,
+      "live_theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
+      "where": "Unpublished duplicate of theme 188621029691 only."
+    },
+    "prices_observed_2026_11_08": {
+      "changed_by_this_run": false,
+      "do_not_write": true,
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "currency": "USD",
+      "variant_title": "18″ x 24″ / Matte",
+      "public_product_count": 24,
+      "unique_variant_titles": ["18″ x 24″ / Matte"],
+      "products_updated_at": "2026-11-08T08:38:28-05:00",
+      "note": "The four celestial posters share that updated_at. This run did not change them. Do not write a price from this file."
+    },
+    "product_bodies_proposed": {
+      "apply": false,
+      "do_not_change_price": true,
+      "size_paragraph": "<p>The size on sale is 18 by 24 inches, on matte fine art paper. A 12 by 16 inch size and a 24 by 36 inch size are not on this listing. It ships unframed in a rigid tube.</p>",
+      "products": [
+        {
+          "handle": "moon-phase-print",
+          "id": "gid://shopify/Product/15489780777275",
+          "proposed_body_html": "<p>The full lunar cycle in eight phases, from new moon through waxing crescent to full and back. A clean, quiet chart made for a bedroom wall or a reading corner. The chart is original artwork drawn for this shop. It is not a photograph of the moon.</p><p>The size on sale is 18 by 24 inches, on matte fine art paper. A 12 by 16 inch size and a 24 by 36 inch size are not on this listing. It ships unframed in a rigid tube.</p>"
+        },
+        {
+          "handle": "ursa-major-constellation-print",
+          "id": "gid://shopify/Product/15489780810043",
+          "supersedes": "pending_revision.ursa_year_proposed.proposed_body_html",
+          "observed_still_says": "1824",
+          "proposed_body_html": "<p>A vintage constellation chart of Ursa Major, reproduced from Sidney Hall's Urania's Mirror, published in London in 1825. The engraving shows the Great Bear and its neighboring stars exactly as a nineteenth-century astronomer would have drawn them, hand-colored and set against aged paper.</p><p>The size on sale is 18 by 24 inches, on matte fine art paper. A 12 by 16 inch size and a 24 by 36 inch size are not on this listing. It ships unframed in a rigid tube.</p>"
+        },
+        {
+          "handle": "orion-constellation-print",
+          "id": "gid://shopify/Product/15490090008891",
+          "proposed_body_html": "<p>A vintage constellation chart of Orion, the Hunter, reproduced from Flamsteed’s Atlas Céleste, Plate 24 (1776). The engraving shows Orion and the neighboring stars of the winter sky, with fine linework and rich color set against aged paper.</p><p>The size on sale is 18 by 24 inches, on matte fine art paper. A 12 by 16 inch size and a 24 by 36 inch size are not on this listing. It ships unframed in a rigid tube.</p>"
+        },
+        {
+          "handle": "solar-system-chart-print",
+          "id": "gid://shopify/Product/15489779761467",
+          "note": "The observed plate sentence was kept. This run did not check the zodiac-ring or four-season wording against the print file.",
+          "proposed_body_html": "<p>An antique engraved chart of the solar system, after Andreas Cellarius's Harmonia Macrocosmica, published in Amsterdam in 1660. The Sun sits at the center inside a ring of the zodiac, with the orbits of the known planets and four seasonal views of Earth, all in hand-colored copperplate style.</p><p>The size on sale is 18 by 24 inches, on matte fine art paper. A 12 by 16 inch size and a 24 by 36 inch size are not on this listing. It ships unframed in a rigid tube.</p>"
+        }
+      ]
+    },
+    "collection_size_sentence_proposed": {
+      "apply": false,
+      "collection_id": "gid://shopify/Collection/512824901947",
+      "independent_of_reorder": true,
+      "append_only_if_approved": "<p>Each listing is 18 by 24 inches. A 12 by 16 inch size and a 24 by 36 inch size are not on these listings.</p>",
+      "reorder_still_gated": "Do not add the four-title order sentence unless the collection is reordered to Moon Phase, Ursa Major, Orion, Solar System. That reorder is still the unapplied 2026-11-07 proposal."
+    },
+    "needs_approval": [
+      "Replace the live page body with pages/celestial-paintings.html, which now also says 12 by 16 is not on these listings.",
+      "Upload the updated templates/page.celestial-paintings.json onto an unpublished duplicate of theme 188621029691 only.",
+      "On that same unpublished duplicate, edit the homepage size strip and the two mislabeled tiles as written in theme-draft/homepage-size-and-tiles.proposed.json. Do not paste that file over templates/index.json.",
+      "If product descriptions are updated, use product_bodies_proposed once. That Ursa paragraph already includes 1825, so do not also paste the 2026-11-07 Ursa paragraph. Do not change any price.",
+      "Reorder the Celestial Paintings collection only under the 2026-11-07 proposal. The size sentence on the collection can be approved on its own."
+    ]
   }
 }
