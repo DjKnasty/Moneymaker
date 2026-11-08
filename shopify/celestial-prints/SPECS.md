@@ -37,7 +37,9 @@ Full metadata, direct upload URLs, and dimensions are in `sources.json`.
 
 ## Store scope note
 
-As of the 2026-11-07 public read, `bhaeqw-9z` sells the Orion plate as well as Ursa Major,
+As of the 2026-11-08 public read, `bhaeqw-9z` sells the Orion plate as well as Ursa Major,
 the moon chart, and the solar-system chart. All four are 18×24 matte Printify posters in
 the Celestial Paintings collection. The shop also sells botanical plates and vintage park
-posters; those are not part of this spec. The Orion file is no longer held back.
+posters; those are not part of this spec. The Orion file is no longer held back. The same
+read found 24 public products, and every variant title was `18″ x 24″ / Matte`. The homepage
+size strip still names 12×16 and 24×36. That strip was not edited.

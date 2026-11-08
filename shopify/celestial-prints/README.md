@@ -13,7 +13,7 @@ not used, nothing deleted).
 
 Star-map and celestial wall-art page for this store only. No inventory. See [PAINTINGS.md](./PAINTINGS.md).
 
-The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-07 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Vintage Plate Co. Draft" (`188621029691`). The page body, updated 2026-11-06, already names four paintings in this order: Moon Phase, Ursa Major, Orion, Solar System. The collection still lists the solar system before Orion. The page still has no banner and no product grid. A smaller page draft, plus a collection-order proposal, is in the repo and was not uploaded. This run did not change a price.
+The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-08 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Vintage Plate Co. Draft" (`188621029691`). The page body already names four paintings in this order: Moon Phase, Ursa Major, Orion, Solar System. The collection still lists the solar system before Orion. The page still has no banner and no product grid. A page draft, a size strip on the Dawn template, a collection-order proposal, and a homepage size-and-tile proposal are in the repo and were not uploaded. This run did not change a price. Every public product read that morning was one 18×24 matte variant at $31.99, compare-at $39.99.
 
 ## Products
 

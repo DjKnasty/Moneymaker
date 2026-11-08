@@ -55,7 +55,7 @@
       "settings": {
         "title": "The paintings",
         "heading_size": "h2",
-        "description": "Four paintings, printed on demand. No stock held.",
+        "description": "<p>Four paintings, 18 by 24 inches, printed on demand. No stock held.</p>",
         "show_description": true,
         "description_style": "body",
         "collection": "celestial-paintings",
@@ -75,9 +75,36 @@
         "quick_add": "none",
         "columns_mobile": "1",
         "padding_top": 28,
-        "padding_bottom": 48
+        "padding_bottom": 36
+      }
+    },
+    "size": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "18 × 24 in",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The size on sale is 18 by 24 inches, on matte fine art paper. A 12 by 16 inch size and a 24 by 36 inch size are not on these listings. Each print ships unframed in a rigid tube.</p>"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": false,
+        "padding_top": 36,
+        "padding_bottom": 52
       }
     }
   },
-  "order": ["banner", "main", "paintings"]
+  "order": ["banner", "main", "paintings", "size"]
 }
