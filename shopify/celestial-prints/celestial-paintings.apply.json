@@ -116,7 +116,7 @@
     "shop": "bhaeqw-9z.myshopify.com",
     "shop_name_observed": "Vintage Plate Co.",
     "do_not_apply_on": "duv5f8-wt.myshopify.com",
-    "why": "Read-only check on 2026-11-07. The live page already names four paintings, with Orion before the solar system. The collection still lists the solar system before Orion. The page is still the default page section: no banner and no product grid. The storefront theme is Dawn - Vintage Plate Co. Draft, id 188621029691, role main, Dawn 16.1.1. templates/page.celestial-paintings.json is not on that theme. Shopify admin was not authenticated, so nothing was uploaded.",
+    "why": "The live page already names four paintings, with Orion before the solar system. The collection still lists the solar system before Orion. The page a buyer opens is still the default page section. On 2026-11-09 the template was written to an unpublished duplicate of the current main theme. The live page body, the collection, and the Ursa year were not changed.",
     "page_body_file": "shopify/celestial-prints/pages/celestial-paintings.html",
     "page_body_changes_versus_live": [
       "Adds a link to /collections/celestial-paintings.",
@@ -130,16 +130,33 @@
       "published_at": "2026-11-05T09:00:50-05:00"
     },
     "theme_template": "shopify/celestial-prints/templates/page.celestial-paintings.json",
-    "theme_template_unchanged_this_run": true,
+    "theme_template_unchanged_this_run": false,
+    "theme_template_fix_2026-11-09": "show_description is false and description is a richtext paragraph. On this Dawn theme, show_description true prints the collection description and ignores the custom sentence.",
+    "theme_draft_written_2026-11-09": {
+      "published": false,
+      "live_theme_write": false,
+      "source_theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
+      "source_theme_name": "Dawn - Vintage Plate Co. Draft",
+      "source_role_after": "MAIN",
+      "duplicate_id": "gid://shopify/OnlineStoreTheme/188676014395",
+      "duplicate_name": "Dawn - Celestial paintings draft",
+      "duplicate_role": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "file_updated_at": "2026-11-09T13:39:12Z",
+      "live_theme_file": "NOT_FOUND after the write",
+      "older_duplicate_not_used": "gid://shopify/OnlineStoreTheme/188599370043"
+    },
     "theme_template_changes": {
       "products_to_show": 4,
       "columns_desktop": 2,
       "collection": "celestial-paintings",
       "do_not_use_collection": "all-prints",
       "banner_text": "Four unframed charts, printed when you order them.",
+      "show_description": false,
+      "description": "<p>Four paintings, printed on demand. No stock held.</p>",
       "live_theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
       "live_theme_name": "Dawn - Vintage Plate Co. Draft",
-      "where_to_put_it": "After a yes, copy onto an unpublished duplicate of theme 188621029691 only. Do not write that live theme. Do not publish any theme. The Nov 5 duplicate 188599370043 was copied from the older main theme 188589113659, which is not the theme the storefront is serving now."
+      "where_it_is": "On unpublished theme 188676014395 only. Do not write live theme 188621029691. Do not publish. Do not use the Nov 5 duplicate 188599370043."
     },
     "collection_observed_order": [
       "moon-phase-print",
@@ -192,7 +209,7 @@
       "Replace the live page body with pages/celestial-paintings.html.",
       "Reorder the Celestial Paintings collection so Orion is third and the solar system is fourth, and only then add the extra description sentence.",
       "Change the Ursa Major description year from 1824 to 1825. Do not change its price.",
-      "Upload templates/page.celestial-paintings.json onto an unpublished duplicate of theme 188621029691 only. Do not write the live theme and do not publish."
+      "Preview unpublished theme 188676014395. Do not publish it, and do not write live theme 188621029691. The template file is already on the unpublished copy."
     ]
   }
 }

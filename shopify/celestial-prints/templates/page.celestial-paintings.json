@@ -55,8 +55,8 @@
       "settings": {
         "title": "The paintings",
         "heading_size": "h2",
-        "description": "Four paintings, printed on demand. No stock held.",
-        "show_description": true,
+        "description": "<p>Four paintings, printed on demand. No stock held.</p>",
+        "show_description": false,
         "description_style": "body",
         "collection": "celestial-paintings",
         "products_to_show": 4,
