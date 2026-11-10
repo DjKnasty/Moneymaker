@@ -3,13 +3,6 @@
     "banner": {
       "type": "image-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Celestial paintings",
-            "heading_size": "h0"
-          }
-        },
         "text": {
           "type": "text",
           "settings": {
@@ -29,8 +22,9 @@
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": ["text", "button"],
       "settings": {
+        "image": "shopify://shop_images/solar-system-mockup.jpg",
         "image_overlay_opacity": 40,
         "image_height": "medium",
         "desktop_content_position": "middle-center",

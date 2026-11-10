@@ -108,8 +108,83 @@
     "do_not_apply": true,
     "why": "Superseded on 2026-11-07. The live page was updated at 2026-11-06T13:07:09-05:00 and already names Orion. Pasting the old three-to-four HTML would put the solar system ahead of Orion and would drop the shorter Orion sentence now on the page."
   },
-  "pending_revision": {
+  "revision_2026_11_07_observed_2026_11_10": {
     "id": "2026-11-07-page-grid-alignment",
+    "applied": false,
+    "observed": "On 2026-11-10 the page body already matched the HTML file, the collection order already matched the page, and the Ursa Major description already said 1825 in a longer paragraph. This run did not apply this revision. Do not paste proposed_body_html over the live Ursa description."
+  },
+  "pending_revision": {
+    "id": "2026-11-10-banner-on-unpublished-copy",
+    "applied": false,
+    "publish": false,
+    "shop": "bhaeqw-9z.myshopify.com",
+    "do_not_apply_on": "duv5f8-wt.myshopify.com",
+    "why": "The Nov 9 theme 188676014395 is now MAIN. Its banner is still Dawn's placeholder, and the banner heading repeats the page title. This run copied that theme and wrote the banner image onto the unpublished copy only.",
+    "theme_draft_written_2026_11_10": {
+      "published": false,
+      "live_theme_write": false,
+      "source_theme_id": "gid://shopify/OnlineStoreTheme/188676014395",
+      "source_theme_name": "Dawn - Celestial paintings draft",
+      "source_role_after": "MAIN",
+      "source_file_updated_at_after": "2026-11-09T13:39:12Z",
+      "source_file_size_after": "2411",
+      "duplicate_id": "gid://shopify/OnlineStoreTheme/188699902267",
+      "duplicate_name": "Dawn - Celestial page draft",
+      "duplicate_role": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "file_updated_at": "2026-11-10T13:50:18Z",
+      "file_size": "2290",
+      "banner_image": "shopify://shop_images/solar-system-mockup.jpg",
+      "banner_image_is_existing_shop_file": true,
+      "banner_heading": "removed so the page h1 is the only Celestial paintings title",
+      "public_preview_theme_id": "served the live theme, not this draft"
+    },
+    "page_body": {
+      "already_matches_html_file": true,
+      "do_not_send_again": true,
+      "updated_at": "2026-11-09T14:06:35Z",
+      "is_published": true
+    },
+    "collection_reorder_proposed": {
+      "apply": false,
+      "already_in_this_order": true,
+      "collection_id": "gid://shopify/Collection/512824901947",
+      "updated_at": "2026-11-09T14:06:38Z",
+      "observed_order": [
+        "moon-phase-print",
+        "ursa-major-constellation-print",
+        "orion-constellation-print",
+        "solar-system-chart-print"
+      ],
+      "description_html_only_if_the_extra_sentence_is_approved": "<p>Star maps and celestial charts, printed when you order them. Unframed paintings on matte fine-art paper. No copy is kept on a shelf.</p><p>Each sheet is one subject from a named plate. These are not a custom night sky for a date or a city.</p><p>The four charts, in order, are the moon phases, Ursa Major, Orion, and the Copernican solar system.</p>"
+    },
+    "ursa_year_proposed": {
+      "apply": false,
+      "do_not_apply": true,
+      "why": "The live description already says 1825 and is longer than proposed_body_html. Pasting the short paragraph would remove the details list.",
+      "product_updated_at": "2026-11-10T02:09:12Z",
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_updated_at": "2026-11-09T04:18:43Z",
+      "do_not_change_price": true
+    },
+    "prices_observed_2026_11_10": {
+      "changed_by_this_run": false,
+      "do_not_write": true,
+      "variant_price": "31.99",
+      "compare_at_price": "39.99"
+    },
+    "needs_approval": [
+      "Preview unpublished theme 188699902267 in Admin. Do not publish it, and do not write live theme 188676014395.",
+      "Add the collection description's third sentence only if he wants the four titles named there. Do not reorder the collection.",
+      "Do not replace the Ursa Major description. Do not change any price.",
+      "Leave the homepage size line alone unless he wants that copy changed. It still names 12 by 16 and 24 by 36."
+    ]
+  },
+  "pending_revision_2026_11_07_body_kept_below": {
+    "id": "2026-11-07-page-grid-alignment",
+    "do_not_apply": true,
+    "superseded_on": "2026-11-10",
     "applied": false,
     "publish": false,
     "not_sent_to_shopify": true,
