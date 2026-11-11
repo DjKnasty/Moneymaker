@@ -13,6 +13,11 @@ plus a new-pools feed for Lane 2):
   Market cap is info-only (no lower or upper bound).
   The old 7-20x vol/liq gate is removed.
   Adjusted top-10 holders is shadow-logged only (not a gate).
+  Social gate (after liq/vol, before candles/anti-rug): at least one
+    X/Twitter or Telegram link. Website is a bonus. social_score is 0-3
+    (X, Telegram, website). Generic/status X URLs and X links reused
+    across mints in the same scan are flagged, not gated. If social
+    APIs error, the coin is logged as social_unknown and fails closed.
 
 Both lanes then go through the same anti-rug + hidden-fee stack,
 including a RugCheck (api.rugcheck.xyz) token report:
@@ -31,6 +36,7 @@ import os
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import datetime as dt
 from pathlib import Path
@@ -42,7 +48,12 @@ UTC = dt.timezone.utc
 
 GT = "https://api.geckoterminal.com/api/v2/networks/solana"
 DEX_TOKENS = "https://api.dexscreener.com/latest/dex/tokens/"
+DEX_TOKENS_V1 = "https://api.dexscreener.com/tokens/v1/solana/"
 DEX_PROFILES = "https://api.dexscreener.com/token-profiles/latest/v1"
+PUMP_COINS = (
+    "https://frontend-api-v3.pump.fun/coins/{mint}",
+    "https://frontend-api.pump.fun/coins/{mint}",
+)
 RUGCHECK = "https://api.rugcheck.xyz/v1/tokens/{mint}/report"
 RPC = "https://api.mainnet-beta.solana.com"
 UA = {"User-Agent": "memescan-lite/1.1", "accept": "application/json"}
@@ -70,6 +81,58 @@ LOG_PATH = BASE / "scan.log"
 LAST_PATH = BASE / "last_result.json"
 SHADOW_PATH = BASE / "shadow_log.jsonl"
 ENV_PATH = BASE / ".env"
+
+# Per-run social lookup cache. Cleared at the start of each run().
+SOCIAL_CACHE = {}
+_PUMP_DISABLED = False
+
+TWITTER_HOSTS = {
+    "x.com",
+    "www.x.com",
+    "twitter.com",
+    "www.twitter.com",
+    "mobile.twitter.com",
+    "mobile.x.com",
+    "t.co",
+}
+TELEGRAM_HOSTS = {
+    "t.me",
+    "www.t.me",
+    "telegram.me",
+    "www.telegram.me",
+    "telegram.org",
+    "www.telegram.org",
+    "telegram.dog",
+}
+# First path segment of an X/Twitter URL that is not a profile or community.
+TWITTER_GENERIC_HEADS = {
+    "",
+    "home",
+    "explore",
+    "search",
+    "login",
+    "signup",
+    "i",
+    "intent",
+    "share",
+    "hashtag",
+    "tos",
+    "privacy",
+    "settings",
+    "notifications",
+    "messages",
+    "compose",
+    "jobs",
+    "about",
+    "download",
+    "security",
+    "help",
+    "terms",
+    "account",
+    "official",
+    "web",
+    "share",
+}
 
 NULL_KEYS = (None, "", "11111111111111111111111111111111")
 
@@ -375,11 +438,16 @@ def enrich_dexscreener(rows):
             mint = (p.get("baseToken") or {}).get("address")
             if not mint or mint in SKIP_MINTS:
                 continue
+            # Socials can live on a non-primary pair; ingest every info blob.
+            ingest_dex_info(mint, p.get("info"))
             liq = fnum((p.get("liquidity") or {}).get("usd"))
             vol = fnum((p.get("volume") or {}).get("h24"))
             cur = best.get(mint)
             if cur is None or (liq, vol) > (cur[0], cur[1]):
                 best[mint] = (liq, vol, p)
+        # Batch succeeded: mints with no info still count as a known-empty Dex result.
+        for mint in chunk:
+            mark_dex_seen(mint)
         for mint, (_, _, p) in best.items():
             rec = by.get(mint)
             if rec is None:
@@ -502,6 +570,369 @@ def cheap_numeric(rows):
         staged[lane]["vol"] += 1
         staged["liq"] += 1
         staged["vol"] += 1
+        out.append(r)
+    return out, staged
+
+
+# ---------------------------------------------------------------- social presence
+def reset_social_state():
+    """Clear per-run social cache and Pump.fun backoff flag."""
+    global _PUMP_DISABLED
+    SOCIAL_CACHE.clear()
+    _PUMP_DISABLED = False
+
+
+def _empty_socials():
+    return {
+        "twitter": None,
+        "telegram": None,
+        "website": None,
+        "flags": [],
+        "source": None,
+        "unknown": False,
+    }
+
+
+def _cache_entry(mint):
+    ent = SOCIAL_CACHE.get(mint)
+    if ent is None:
+        ent = {"dex_seen": False, "pump_seen": False, "socials": _empty_socials(), "error": None}
+        SOCIAL_CACHE[mint] = ent
+    return ent
+
+
+def _norm_host(host):
+    host = (host or "").lower().strip()
+    if host.startswith("www."):
+        host = host[4:]
+    return host
+
+
+def _add_scheme(url):
+    u = (url or "").strip()
+    if not u:
+        return ""
+    if u.lower().startswith(("http://", "https://")):
+        return u
+    return "https://" + u.lstrip("/")
+
+
+def classify_social_url(url):
+    """Return (kind, normalized_url) where kind is twitter, telegram, or website.
+
+    Bare @handles are treated as X. t.me paths without a scheme are Telegram.
+    Returns (None, None) for empty or unusable values.
+    """
+    if url is None:
+        return None, None
+    u = str(url).strip()
+    if not u or u.lower() in ("n/a", "none", "null", "-", "http://", "https://"):
+        return None, None
+    if u.startswith("@"):
+        handle = u[1:].strip().lstrip("@").split()[0].strip("/")
+        if handle:
+            return "twitter", "https://x.com/" + handle
+        return None, None
+    low = u.lower()
+    if low.startswith("t.me/") or low.startswith("telegram.me/") or low.startswith("telegram.dog/"):
+        u = _add_scheme(u)
+        return "telegram", u
+    if not low.startswith(("http://", "https://")):
+        # pump.fun sometimes stores a bare handle or domain.
+        if "/" not in u and " " not in u and "." not in u:
+            return "twitter", "https://x.com/" + u.lstrip("@")
+        u = _add_scheme(u)
+        low = u.lower()
+    try:
+        parsed = urllib.parse.urlparse(u)
+    except Exception:
+        return None, None
+    host = _norm_host(parsed.netloc)
+    if not host:
+        return None, None
+    if host in TWITTER_HOSTS:
+        return "twitter", u
+    if host in TELEGRAM_HOSTS:
+        return "telegram", u
+    return "website", u
+
+
+def twitter_is_generic_or_status(url):
+    """True when an X/Twitter link is a status, intent, or other non-profile URL."""
+    kind, u = classify_social_url(url)
+    if kind != "twitter" or not u:
+        return False
+    try:
+        parsed = urllib.parse.urlparse(u)
+    except Exception:
+        return True
+    host = _norm_host(parsed.netloc)
+    if host in {"t.co"}:
+        return True
+    parts = [x for x in (parsed.path or "").split("/") if x]
+    low_parts = [x.lower() for x in parts]
+    if not low_parts:
+        return True
+    if "status" in low_parts or "statuses" in low_parts:
+        return True
+    # /i/communities/<id> is a real community presence, not generic.
+    if low_parts[0] == "i" and len(low_parts) >= 2 and low_parts[1] == "communities":
+        return len(low_parts) < 3
+    if low_parts[0] in TWITTER_GENERIC_HEADS:
+        return True
+    return False
+
+
+def twitter_identity(url):
+    """Stable identity for reuse checks: x.com/<handle> or x.com/i/communities/<id>."""
+    kind, u = classify_social_url(url)
+    if kind != "twitter" or not u:
+        return None
+    try:
+        parsed = urllib.parse.urlparse(u)
+    except Exception:
+        return None
+    parts = [x for x in (parsed.path or "").split("/") if x]
+    if not parts:
+        return "x.com"
+    low = [x.lower() for x in parts]
+    if low[0] == "i" and len(low) >= 3 and low[1] == "communities":
+        return "x.com/i/communities/" + low[2]
+    handle = low[0]
+    if handle in TWITTER_GENERIC_HEADS:
+        # Keep the raw path so identical generic links still cluster.
+        path = "/".join(low)
+        return "x.com/" + path
+    return "x.com/" + handle
+
+
+def _set_kind(dst, kind, url):
+    if not kind or not url:
+        return
+    if kind == "twitter" and not dst.get("twitter"):
+        dst["twitter"] = url
+    elif kind == "telegram" and not dst.get("telegram"):
+        dst["telegram"] = url
+    elif kind == "website" and not dst.get("website"):
+        dst["website"] = url
+
+
+def _merge_source(dst, src):
+    prev = dst.get("source")
+    if not src:
+        return
+    if not prev:
+        dst["source"] = src
+    elif src not in str(prev).split("+"):
+        dst["source"] = "+".join([prev, src])
+
+
+def ingest_links(mint, links, source):
+    """Merge classified links into the per-mint cache. Does not mark unknown."""
+    ent = _cache_entry(mint)
+    socials = ent["socials"]
+    for raw in links:
+        kind, url = classify_social_url(raw)
+        if kind == "website" and source == "socials_array":
+            # Instagram / Discord / YouTube in the socials array are not a website bonus.
+            continue
+        _set_kind(socials, kind, url)
+    if any(socials.get(k) for k in ("twitter", "telegram", "website")):
+        _merge_source(socials, source if source != "socials_array" else "dexscreener")
+    return ent
+
+
+def ingest_dex_info(mint, info):
+    if not mint or not isinstance(info, dict):
+        return
+    links = []
+    for s in info.get("socials") or []:
+        if isinstance(s, dict):
+            links.append(s.get("url") or s.get("link"))
+        elif isinstance(s, str):
+            links.append(s)
+    # Apply socials first, skipping non X/TG site-like entries in that array.
+    ingest_links(mint, links, "socials_array")
+    sites = []
+    for w in info.get("websites") or []:
+        if isinstance(w, dict):
+            sites.append(w.get("url") or w.get("link"))
+        elif isinstance(w, str):
+            sites.append(w)
+    ingest_links(mint, sites, "dexscreener")
+    _merge_source(_cache_entry(mint)["socials"], "dexscreener")
+
+
+def mark_dex_seen(mint):
+    """A successful DexScreener batch included this mint (socials may still be empty)."""
+    if not mint:
+        return
+    ent = _cache_entry(mint)
+    ent["dex_seen"] = True
+    if ent["socials"].get("unknown") and ent["error"] is None:
+        ent["socials"]["unknown"] = False
+
+
+def _social_score(socials):
+    return int(bool(socials.get("twitter"))) + int(bool(socials.get("telegram"))) + int(bool(socials.get("website")))
+
+
+def _public_socials(socials):
+    return {
+        "twitter": (socials or {}).get("twitter"),
+        "telegram": (socials or {}).get("telegram"),
+        "website": (socials or {}).get("website"),
+    }
+
+
+def fetch_dex_socials(mint):
+    """Single-mint DexScreener lookup when the enrich batch missed this token."""
+    ent = _cache_entry(mint)
+    if ent["dex_seen"]:
+        return ent
+    last_err = None
+    urls = [DEX_TOKENS + mint, DEX_TOKENS_V1 + mint]
+    for url in urls:
+        try:
+            d = http_json(url, tries=2, timeout=20)
+        except Exception as e:
+            last_err = e
+            continue
+        rows = []
+        if isinstance(d, dict):
+            rows = d.get("pairs") or d.get("data") or []
+        elif isinstance(d, list):
+            rows = d
+        for p in rows or []:
+            if str(p.get("chainId") or "").lower() not in ("", "solana"):
+                continue
+            base = (p.get("baseToken") or {}).get("address") or mint
+            ingest_dex_info(base or mint, p.get("info"))
+        mark_dex_seen(mint)
+        return ent
+    ent["error"] = f"dex {last_err}"[:160] if last_err else "dex empty"
+    return ent
+
+
+def fetch_pump_socials(mint):
+    """Pump.fun metadata fallback (twitter/telegram/website). Disabled after 403/401."""
+    global _PUMP_DISABLED
+    ent = _cache_entry(mint)
+    if ent["pump_seen"] or _PUMP_DISABLED:
+        if _PUMP_DISABLED and not ent["pump_seen"]:
+            ent["error"] = (ent.get("error") or "pump disabled this run") 
+        return ent
+    last_err = None
+    for tmpl in PUMP_COINS:
+        try:
+            d = http_json(tmpl.format(mint=mint), tries=1, timeout=12)
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if getattr(e, "code", None) in (401, 403):
+                _PUMP_DISABLED = True
+                ent["error"] = f"pump {e}"[:160]
+                return ent
+            continue
+        except Exception as e:
+            last_err = e
+            continue
+        ent["pump_seen"] = True
+        if not isinstance(d, dict):
+            return ent
+        links = [d.get("twitter"), d.get("telegram"), d.get("website"), d.get("twitter_url"), d.get("telegram_url"), d.get("website_url")]
+        ingest_links(mint, links, "pump")
+        return ent
+    if last_err is not None:
+        ent["error"] = f"pump {last_err}"[:160]
+    return ent
+
+
+def resolve_socials(mint):
+    """Fill cache for one mint. Dex first, Pump only if X and Telegram are both missing.
+
+    Unknown only when Dex failed and Pump could not fill the gap.
+    """
+    ent = fetch_dex_socials(mint)
+    socials = ent["socials"]
+    if socials.get("twitter") or socials.get("telegram"):
+        socials["unknown"] = False
+        return ent
+    # Website-only or empty: try Pump for an X/Telegram link.
+    fetch_pump_socials(mint)
+    socials = ent["socials"]
+    if socials.get("twitter") or socials.get("telegram") or socials.get("website"):
+        socials["unknown"] = False
+        return ent
+    if ent["dex_seen"]:
+        # Dex answered; Pump miss does not turn a known-empty result into unknown.
+        socials["unknown"] = False
+        return ent
+    socials["unknown"] = True
+    return ent
+
+
+def cheap_social(rows):
+    """Require at least one X/Twitter or Telegram link. Website is a bonus, not enough alone.
+
+    Generic/status X URLs and X links reused in this scan are flagged, not gated.
+    API-unknown is fail-closed and logged as social_unknown.
+    """
+    out = []
+    staged = {"social": 0, "social_fail": 0, "social_unknown": 0, "l1": {"social": 0, "social_fail": 0}, "l2": {"social": 0, "social_fail": 0}}
+    # Resolve first so reuse can be computed across the whole vol-passer set.
+    for r in rows:
+        mint = r.get("token")
+        try:
+            ent = resolve_socials(mint)
+        except Exception as e:
+            ent = _cache_entry(mint)
+            ent["error"] = f"social {e}"[:160]
+            ent["socials"]["unknown"] = not ent["dex_seen"]
+        socials = dict(ent["socials"])
+        socials["flags"] = list(socials.get("flags") or [])
+        r["socials"] = socials
+        r["social_score"] = _social_score(socials)
+        r["social_unknown"] = bool(socials.get("unknown"))
+        if socials.get("twitter") and twitter_is_generic_or_status(socials["twitter"]):
+            if "twitter_generic_or_status" not in socials["flags"]:
+                socials["flags"].append("twitter_generic_or_status")
+        time.sleep(0.05)
+
+    reuse = {}
+    for r in rows:
+        ident = twitter_identity((r.get("socials") or {}).get("twitter"))
+        if ident:
+            reuse.setdefault(ident, []).append(r)
+    for ident, group in reuse.items():
+        if len({x.get("token") for x in group}) < 2:
+            continue
+        for r in group:
+            flags = (r.get("socials") or {}).setdefault("flags", [])
+            if "twitter_reused" not in flags:
+                flags.append("twitter_reused")
+
+    for r in rows:
+        socials = r.get("socials") or _empty_socials()
+        r["social_score"] = _social_score(socials)
+        r["social_flags"] = list(socials.get("flags") or [])
+        lane = r.get("lane")
+        if socials.get("unknown"):
+            r["social_fail"] = "social_unknown"
+            r["social_unknown"] = True
+            staged["social_fail"] += 1
+            staged["social_unknown"] += 1
+            if lane in ("l1", "l2"):
+                staged[lane]["social_fail"] += 1
+            continue
+        if not socials.get("twitter") and not socials.get("telegram"):
+            r["social_fail"] = "no X/Twitter or Telegram link"
+            staged["social_fail"] += 1
+            if lane in ("l1", "l2"):
+                staged[lane]["social_fail"] += 1
+            continue
+        staged["social"] += 1
+        if lane in ("l1", "l2"):
+            staged[lane]["social"] += 1
         out.append(r)
     return out, staged
 
@@ -877,6 +1308,8 @@ def payload_coin(r, ts):
         "liq": r.get("liq") or 0,
         "vol": r.get("vol24") or 0,
         "lane": r.get("lane"),
+        "socials": _public_socials(r.get("socials") or {}),
+        "social_score": r.get("social_score") if r.get("social_score") is not None else _social_score(r.get("socials") or {}),
         "checks": r.get("checks") or {},
         "timestamp": ts,
     }
@@ -917,6 +1350,14 @@ def _shadow_record(r, ts, passed=False):
     reasons = []
     if r.get("cheap_fail"):
         reasons.append(r["cheap_fail"])
+    if r.get("social_fail"):
+        reasons.append(r["social_fail"])
+    if r.get("social_unknown") and "social_unknown" not in reasons:
+        reasons.append("social_unknown")
+    flags = r.get("social_flags") or (r.get("socials") or {}).get("flags") or []
+    for fl in flags:
+        if fl not in reasons:
+            reasons.append(fl)
     if r.get("candle_fail"):
         reasons.append(r["candle_fail"])
     if r.get("adj10_shadow") and r.get("adj10_shadow") not in ("ok", None):
@@ -931,10 +1372,15 @@ def _shadow_record(r, ts, passed=False):
         status = "antirug_fail"
     elif r.get("candle_fail"):
         status = "candle_fail"
+    elif r.get("social_unknown"):
+        status = "social_unknown"
+    elif r.get("social_fail"):
+        status = "social_fail"
     elif r.get("cheap_fail"):
         status = "cheap_fail"
     else:
         status = "other"
+    socials = r.get("socials") or {}
     return {
         "ts": ts,
         "mint": r.get("token"),
@@ -949,6 +1395,9 @@ def _shadow_record(r, ts, passed=False):
         "holders": rc.get("totalHolders"),
         "raw10": rc.get("raw10"),
         "adj10": r.get("adj10") if r.get("adj10") is not None else rc.get("adj10"),
+        "socials": _public_socials(socials),
+        "social_score": r.get("social_score") if r.get("social_score") is not None else _social_score(socials),
+        "social_flags": list(flags),
         "passed": bool(passed),
         "status": status,
         "reasons": reasons,
@@ -969,18 +1418,32 @@ def write_shadow(rows, passers, ts):
 
 # ---------------------------------------------------------------- run
 def _empty_lane():
-    return {"candidates": 0, "liq": 0, "vol": 0, "candles": 0, "adj10_shadow": 0, "adj10_flagged": 0, "antirug": 0}
+    return {
+        "candidates": 0,
+        "liq": 0,
+        "vol": 0,
+        "social": 0,
+        "social_fail": 0,
+        "candles": 0,
+        "adj10_shadow": 0,
+        "adj10_flagged": 0,
+        "antirug": 0,
+    }
 
 
 def run(post=True):
     t0 = time.time()
     ts = iso_et()
+    reset_social_state()
     staged = {
         "collected": 0,
         "new_pools": 0,
         "too_fresh": 0,
         "liq": 0,
         "vol": 0,
+        "social": 0,
+        "social_fail": 0,
+        "social_unknown": 0,
         "candles": 0,
         "adj10_shadow": 0,
         "adj10_flagged": 0,
@@ -996,7 +1459,7 @@ def run(post=True):
         staged["skipped_position"] = 1
         runtime = time.time() - t0
         log_line(
-            f"{ts} skipped_position=1 collected=0 liq=0 vol=0 candles=0 adj10_shadow=0 "
+            f"{ts} skipped_position=1 collected=0 liq=0 vol=0 social=0 candles=0 adj10_shadow=0 "
             f"antirug=0 new=0 posted=0 runtime_s={runtime:.1f}"
         )
         return {"skipped_position": True, "runtime_s": runtime, "staged": staged, "passers": []}
@@ -1014,15 +1477,25 @@ def run(post=True):
         staged[lane]["liq"] = counts.get(lane, {}).get("liq", 0)
         staged[lane]["vol"] = counts.get(lane, {}).get("vol", 0)
 
-    candle_ok = cheap_candles(numeric)
+    social_ok, social_counts = cheap_social(numeric)
+    staged["social"] = social_counts.get("social", 0)
+    staged["social_fail"] = social_counts.get("social_fail", 0)
+    staged["social_unknown"] = social_counts.get("social_unknown", 0)
+    for lane in ("l1", "l2"):
+        staged[lane]["social"] = social_counts.get(lane, {}).get("social", 0)
+        staged[lane]["social_fail"] = social_counts.get(lane, {}).get("social_fail", 0)
+
+    candle_ok = cheap_candles(social_ok)
     staged["candles"] = len(candle_ok)
     for r in candle_ok:
         if r.get("lane") in ("l1", "l2"):
             staged[r["lane"]]["candles"] += 1
     print(
         f"  cheap gates: collected={staged['collected']} new_pools={staged['new_pools']} "
-        f"liq={staged['liq']} vol={staged['vol']} "
-        f"l1 vol={staged['l1']['vol']} l2 vol={staged['l2']['vol']} candles pending",
+        f"liq={staged['liq']} vol={staged['vol']} social={staged['social']} "
+        f"social_fail={staged['social_fail']} "
+        f"l1 vol={staged['l1']['vol']} social={staged['l1']['social']} "
+        f"l2 vol={staged['l2']['vol']} social={staged['l2']['social']} candles pending",
         flush=True,
     )
     scored, full_ok = cheap_adj10_and_security(candle_ok)
@@ -1058,24 +1531,30 @@ def run(post=True):
     staged["runtime_s"] = round(runtime, 2)
     log_line(
         f"{ts} collected={staged['collected']} new_pools={staged['new_pools']} "
-        f"liq={staged['liq']} vol={staged['vol']} candles={staged['candles']} "
+        f"liq={staged['liq']} vol={staged['vol']} social={staged['social']} "
+        f"social_fail={staged['social_fail']} social_unknown={staged['social_unknown']} "
+        f"candles={staged['candles']} "
         f"adj10_shadow={staged['adj10_shadow']} adj10_flagged={staged['adj10_flagged']} "
         f"antirug={staged['antirug']} new={staged['new']} posted={staged['posted']} "
         f"l1={staged['l1']['candidates']}/{staged['l1']['liq']}/{staged['l1']['vol']}/"
-        f"{staged['l1']['candles']}/{staged['l1']['antirug']} "
+        f"{staged['l1']['social']}/{staged['l1']['candles']}/{staged['l1']['antirug']} "
         f"l2={staged['l2']['candidates']}/{staged['l2']['liq']}/{staged['l2']['vol']}/"
-        f"{staged['l2']['candles']}/{staged['l2']['antirug']} "
+        f"{staged['l2']['social']}/{staged['l2']['candles']}/{staged['l2']['antirug']} "
         f"skipped_position={staged['skipped_position']} runtime_s={runtime:.1f} webhook={status}"
     )
     print(
         f"  FUNNEL collected={staged['collected']} new_pools={staged['new_pools']} too_fresh={staged['too_fresh']}\n"
         f"    L1: cand={staged['l1']['candidates']} liq={staged['l1']['liq']} vol={staged['l1']['vol']} "
+        f"social={staged['l1']['social']} social_fail={staged['l1']['social_fail']} "
         f"candles={staged['l1']['candles']} adj10_shadow={staged['l1']['adj10_shadow']} "
         f"adj10_flagged={staged['l1']['adj10_flagged']} antirug={staged['l1']['antirug']}\n"
         f"    L2: cand={staged['l2']['candidates']} liq={staged['l2']['liq']} vol={staged['l2']['vol']} "
+        f"social={staged['l2']['social']} social_fail={staged['l2']['social_fail']} "
         f"candles={staged['l2']['candles']} adj10_shadow={staged['l2']['adj10_shadow']} "
         f"adj10_flagged={staged['l2']['adj10_flagged']} antirug={staged['l2']['antirug']}\n"
-        f"    new={staged['new']} posted={staged['posted']} webhook={status} runtime_s={runtime:.1f}",
+        f"    social={staged['social']} social_fail={staged['social_fail']} "
+        f"social_unknown={staged['social_unknown']} "
+        f"new={staged['new']} posted={staged['posted']} webhook={status} runtime_s={runtime:.1f}",
         flush=True,
     )
 
@@ -1094,14 +1573,29 @@ def run(post=True):
                 "vol": r.get("vol24"),
                 "turnover": round(r.get("turnover") or turnover_of(r), 3),
                 "vl": round(vl_of(r), 2),
+                "social_score": r.get("social_score"),
+                "socials": _public_socials(r.get("socials") or {}),
             }
             for r in numeric
         ],
         "passers": [payload_coin(r, ts) for r in full_ok],
         "fresh": [payload_coin(r, ts) for r in fresh],
+        "social_fails": [
+            {
+                "mint": r["token"],
+                "symbol": r.get("symbol"),
+                "lane": r.get("lane"),
+                "reason": r.get("social_fail"),
+                "social_score": r.get("social_score"),
+                "socials": _public_socials(r.get("socials") or {}),
+                "flags": r.get("social_flags") or [],
+            }
+            for r in numeric
+            if r.get("social_fail")
+        ],
         "candle_fails": [
             {"mint": r["token"], "symbol": r.get("symbol"), "lane": r.get("lane"), "reason": r.get("candle_fail")}
-            for r in numeric
+            for r in social_ok
             if r.get("candle_fail")
         ],
         "adj10_shadow_flags": [
