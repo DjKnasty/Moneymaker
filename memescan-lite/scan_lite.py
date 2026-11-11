@@ -4,14 +4,17 @@
 Read-only. Never signs a transaction, never touches a wallet, never trades.
 No LLM calls. Standard library only.
 
-Cheap gates (screener data first: GeckoTerminal + DexScreener):
-  - (market cap gate removed 2026-11-11: no lower or upper bound)
-  - liquidity $150K-$1M
-  - 24h volume >= $1.5M and 7-20x liquidity
-  - at least 12 hourly candles
-  - adjusted top-10 holders <= 30% (pool/AMM vaults excluded)
+Two cheap-filter lanes (screener data first: GeckoTerminal + DexScreener,
+plus a new-pools feed for Lane 2):
+  Lane 1 (aged): >=12 hourly candles, 24h vol >= $250K, vol/mcap >= 0.4,
+    liquidity $50K-$2.0M.
+  Lane 2 (fresh): pool age 15 min to 12 h, >=1 hourly candle, 24h vol >= $100K,
+    vol/mcap >= 0.5, liquidity >= $50K.
+  Market cap is info-only (no lower or upper bound).
+  The old 7-20x vol/liq gate is removed.
+  Adjusted top-10 holders is shadow-logged only (not a gate).
 
-Only coins that pass every cheap gate get anti-rug + hidden-fee checks,
+Both lanes then go through the same anti-rug + hidden-fee stack,
 including a RugCheck (api.rugcheck.xyz) token report:
   - mint and freeze authority revoked
   - LP locked or burned (>= 90% on the primary pool)
@@ -39,23 +42,33 @@ UTC = dt.timezone.utc
 
 GT = "https://api.geckoterminal.com/api/v2/networks/solana"
 DEX_TOKENS = "https://api.dexscreener.com/latest/dex/tokens/"
+DEX_PROFILES = "https://api.dexscreener.com/token-profiles/latest/v1"
 RUGCHECK = "https://api.rugcheck.xyz/v1/tokens/{mint}/report"
 RPC = "https://api.mainnet-beta.solana.com"
-UA = {"User-Agent": "memescan-lite/1.0", "accept": "application/json"}
+UA = {"User-Agent": "memescan-lite/1.1", "accept": "application/json"}
 
-# Market cap gate removed 2026-11-11 (no lower or upper bound on market cap).
-LIQ_LO, LIQ_HI = 150_000, 1_000_000
-VOL_LO = 1_500_000
-VL_LO, VL_HI = 7.0, 20.0
-MIN_CANDLES = 12
+# Market cap is info-only (gate removed 2026-11-11).
+# Two-lane filters (approved 2026-11-11). Vol/liq 7-20x gate dropped.
+LIQ_LO = 50_000
+LIQ_HI_L1 = 2_000_000
+VOL_L1 = 250_000
+VOL_L2 = 100_000
+TURN_L1 = 0.4
+TURN_L2 = 0.5
+MIN_CANDLES_L1 = 12
+MIN_CANDLES_L2 = 1
+AGE_L2_MIN_S = 15 * 60
+AGE_L2_MAX_S = 12 * 3600
+COLLECT_EARLY_VOL = 80_000  # early-exit floor on volume pages (0.8 * Lane 2 vol)
 LP_MIN_PCT = 90.0
 TAX_FAIL_PCT = 5.0
-ADJ10_MAX = 30.0
+ADJ10_MAX = 30.0  # shadow-log only; not a gate
 DEDUPE_HOURS = 6
 POSITION_FLAG = BASE / "POSITION_OPEN"
 ALERT_STATE = BASE / "alerted.json"
 LOG_PATH = BASE / "scan.log"
 LAST_PATH = BASE / "last_result.json"
+SHADOW_PATH = BASE / "shadow_log.jsonl"
 ENV_PATH = BASE / ".env"
 
 NULL_KEYS = (None, "", "11111111111111111111111111111111")
@@ -181,6 +194,45 @@ def _gt_row(p, src):
     }
 
 
+def _merge_row(found, rec):
+    if not rec or not rec.get("token"):
+        return
+    prev = found.get(rec["token"])
+    if prev is None:
+        found[rec["token"]] = rec
+        return
+    if (rec.get("liq") or 0, rec.get("vol24") or 0) > (prev.get("liq") or 0, prev.get("vol24") or 0):
+        srcs = []
+        for s in ((prev.get("source") or ""), (rec.get("source") or "")):
+            for part in str(s).split(","):
+                if part and part not in srcs:
+                    srcs.append(part)
+        rec = dict(rec)
+        rec["source"] = ",".join(srcs) or rec.get("source")
+        for k in ("src_gt", "src_dex", "src_dex_profile", "src_new"):
+            if prev.get(k) or rec.get(k):
+                rec[k] = True
+        if prev.get("created") and not rec.get("created"):
+            rec["created"] = prev.get("created")
+        if prev.get("pool") and not rec.get("pool"):
+            rec["pool"] = prev.get("pool")
+        found[rec["token"]] = rec
+    else:
+        srcs = []
+        for s in ((prev.get("source") or ""), (rec.get("source") or "")):
+            for part in str(s).split(","):
+                if part and part not in srcs:
+                    srcs.append(part)
+        prev["source"] = ",".join(srcs) or prev.get("source")
+        for k in ("src_gt", "src_dex", "src_dex_profile", "src_new"):
+            if rec.get(k):
+                prev[k] = True
+        if rec.get("created") and not prev.get("created"):
+            prev["created"] = rec.get("created")
+        if rec.get("pool") and not prev.get("pool"):
+            prev["pool"] = rec.get("pool")
+
+
 def collect_gt():
     """High-volume Solana pools from GeckoTerminal. Stop once 24h vol falls below the floor."""
     found = {}
@@ -191,14 +243,12 @@ def collect_gt():
             rec = _gt_row(p, src)
             if not rec or not rec.get("pool"):
                 continue
-            if rec["vol24"] >= VOL_LO * 0.8:  # loose net; tight gate comes later
+            if rec["vol24"] >= COLLECT_EARLY_VOL:
                 kept_vol += 1
-            prev = found.get(rec["token"])
-            if prev is None or (rec["liq"], rec["vol24"]) > (prev["liq"], prev["vol24"]):
-                found[rec["token"]] = rec
+            _merge_row(found, rec)
         return kept_vol, len(rows)
 
-    # Top 24h volume: early-exit once a full page is below the volume floor.
+    # Top 24h volume: early-exit once a full page is below the collection floor.
     below_pages = 0
     for page in range(1, 11):
         try:
@@ -212,11 +262,11 @@ def collect_gt():
         kept, n = absorb(rows, f"pools_vol_p{page}")
         print(f"  gt volume p{page}: {n} rows, loose-vol kept={kept}, uniq={len(found)}", flush=True)
         min_vol = min((fnum((p.get("attributes") or {}).get("volume_usd", {}).get("h24")) for p in rows), default=0)
-        if min_vol < VOL_LO:
+        if min_vol < COLLECT_EARLY_VOL:
             below_pages += 1
             if below_pages >= 2:
                 break
-        time.sleep(0.25)
+        time.sleep(0.3)
 
     for dur, pages in (("1h", 3), ("6h", 2)):
         for page in range(1, pages + 1):
@@ -229,8 +279,79 @@ def collect_gt():
             if not rows:
                 break
             absorb(rows, f"trending_{dur}_p{page}")
-            time.sleep(0.25)
+            time.sleep(0.3)
     return list(found.values())
+
+
+def collect_gt_new_pools(pages=4):
+    """Fresh Solana pools from GeckoTerminal new_pools (past ~48h, newest first)."""
+    found = {}
+    for page in range(1, pages + 1):
+        try:
+            d = http_json(f"{GT}/new_pools?page={page}")
+        except Exception as e:
+            print(f"  gt new_pools p{page} fail: {e}", flush=True)
+            break
+        rows = (d or {}).get("data") or []
+        if not rows:
+            break
+        for p in rows:
+            rec = _gt_row(p, f"new_pools_p{page}")
+            if not rec:
+                continue
+            rec["src_new"] = True
+            _merge_row(found, rec)
+        print(f"  gt new_pools p{page}: {len(rows)} rows, uniq={len(found)}", flush=True)
+        time.sleep(0.3)
+    return list(found.values())
+
+
+def collect_dex_profiles():
+    """DexScreener latest token profiles, Solana only. Enriched later."""
+    found = {}
+    try:
+        d = http_json(DEX_PROFILES, tries=2, timeout=25)
+    except Exception as e:
+        print(f"  dex profiles fail: {e}", flush=True)
+        return []
+    rows = d if isinstance(d, list) else (d or {}).get("data") or []
+    for p in rows:
+        if str(p.get("chainId") or "").lower() != "solana":
+            continue
+        tok = p.get("tokenAddress")
+        if not tok or tok in SKIP_MINTS:
+            continue
+        found[tok] = {
+            "token": tok,
+            "symbol": "?",
+            "pool": None,
+            "dex": None,
+            "mc": 0.0,
+            "fdv": 0.0,
+            "liq": 0.0,
+            "vol24": 0.0,
+            "vol6": 0.0,
+            "vol1": 0.0,
+            "price": 0.0,
+            "created": None,
+            "source": "dex_profiles",
+            "src_dex_profile": True,
+        }
+    print(f"  dex profiles: solana={len(found)} of {len(rows)}", flush=True)
+    return list(found.values())
+
+
+def collect_universe():
+    found = {}
+    for rec in collect_gt():
+        _merge_row(found, rec)
+    new_rows = collect_gt_new_pools()
+    for rec in new_rows:
+        _merge_row(found, rec)
+    for rec in collect_dex_profiles():
+        _merge_row(found, rec)
+    rows = list(found.values())
+    return rows, len(new_rows)
 
 
 def enrich_dexscreener(rows):
@@ -293,33 +414,105 @@ def vl_of(r):
     return (r.get("vol24") or 0.0) / liq if liq else 0.0
 
 
-def cheap_numeric(rows):
-    staged = {"collected": len(rows)}
-    liq = [r for r in rows if LIQ_LO <= (r.get("liq") or 0) <= LIQ_HI]
-    staged["liq"] = len(liq)
-    vol = [r for r in liq if (r.get("vol24") or 0) >= VOL_LO and VL_LO <= vl_of(r) <= VL_HI]
-    staged["vol"] = len(vol)
-    return vol, staged
+def turnover_of(r):
+    cap = cap_of(r)
+    return (r.get("vol24") or 0.0) / cap if cap else 0.0
 
 
-def too_young(r):
-    """True if the pair is known to be younger than 12 hours (skip candle fetch)."""
+def pool_age_seconds(r):
     created = r.get("created")
     if created:
         try:
             t = dt.datetime.fromisoformat(str(created).replace("Z", "+00:00"))
-            if (dt.datetime.now(UTC) - t).total_seconds() < MIN_CANDLES * 3600:
-                return True
+            if t.tzinfo is None:
+                t = t.replace(tzinfo=UTC)
+            return (dt.datetime.now(UTC) - t.astimezone(UTC)).total_seconds()
         except Exception:
             pass
     ms = r.get("pair_created_ms")
     if ms:
         try:
             t = dt.datetime.fromtimestamp(float(ms) / 1000.0, UTC)
-            if (dt.datetime.now(UTC) - t).total_seconds() < MIN_CANDLES * 3600:
-                return True
+            return (dt.datetime.now(UTC) - t).total_seconds()
         except Exception:
             pass
+    return None
+
+
+def assign_lane(r):
+    """Lane 2 if pool age is 15 min to 12 h; Lane 1 if aged or age unknown; None if <15 min."""
+    age = pool_age_seconds(r)
+    r["age_s"] = age
+    r["turnover"] = turnover_of(r)
+    if age is not None and age < AGE_L2_MIN_S:
+        r["lane"] = None
+        return None
+    if age is not None and age < AGE_L2_MAX_S:
+        r["lane"] = "l2"
+        return "l2"
+    r["lane"] = "l1"
+    return "l1"
+
+
+def cheap_numeric(rows):
+    """Apply per-lane liquidity, volume, and turnover gates. Market cap is info-only."""
+    staged = {"collected": len(rows), "liq": 0, "vol": 0, "too_fresh": 0, "l1": {}, "l2": {}}
+    for lane in ("l1", "l2"):
+        staged[lane] = {"candidates": 0, "liq": 0, "vol": 0}
+    out = []
+    for r in rows:
+        lane = assign_lane(r)
+        if lane is None:
+            r["cheap_fail"] = f"younger than 15m (age_s={r.get('age_s')})"
+            staged["too_fresh"] += 1
+            continue
+        staged[lane]["candidates"] += 1
+        liq = r.get("liq") or 0.0
+        vol = r.get("vol24") or 0.0
+        turn = r.get("turnover") or 0.0
+        cap = cap_of(r)
+        reasons = []
+        if lane == "l2":
+            if liq < LIQ_LO:
+                reasons.append(f"liq {liq:.0f} < {LIQ_LO:.0f}")
+            if vol < VOL_L2:
+                reasons.append(f"vol24 {vol:.0f} < {VOL_L2:.0f}")
+            if cap <= 0:
+                reasons.append("mcap missing (turnover unknown)")
+            elif turn < TURN_L2:
+                reasons.append(f"turnover {turn:.3f} < {TURN_L2}")
+        else:
+            if liq < LIQ_LO or liq > LIQ_HI_L1:
+                reasons.append(f"liq {liq:.0f} not in {LIQ_LO:.0f}-{LIQ_HI_L1:.0f}")
+            if vol < VOL_L1:
+                reasons.append(f"vol24 {vol:.0f} < {VOL_L1:.0f}")
+            if cap <= 0:
+                reasons.append("mcap missing (turnover unknown)")
+            elif turn < TURN_L1:
+                reasons.append(f"turnover {turn:.3f} < {TURN_L1}")
+        if reasons:
+            r["cheap_fail"] = "; ".join(reasons)
+            # Count how far they got for the funnel (liq pass, then vol+turnover).
+            liq_ok = (liq >= LIQ_LO) if lane == "l2" else (LIQ_LO <= liq <= LIQ_HI_L1)
+            if liq_ok:
+                staged[lane]["liq"] += 1
+                staged["liq"] += 1
+            continue
+        staged[lane]["liq"] += 1
+        staged[lane]["vol"] += 1
+        staged["liq"] += 1
+        staged["vol"] += 1
+        out.append(r)
+    return out, staged
+
+
+def too_young_l1(r):
+    """True if the pair is known to be younger than 12 hours (Lane 1 should not fetch)."""
+    age = r.get("age_s")
+    if age is None:
+        age = pool_age_seconds(r)
+    if age is not None and age < MIN_CANDLES_L1 * 3600:
+        return True
     return False
 
 
@@ -331,7 +524,9 @@ def fetch_candles(pool, limit=24):
 def cheap_candles(rows):
     out = []
     for r in rows:
-        if too_young(r):
+        lane = r.get("lane") or "l1"
+        need = MIN_CANDLES_L1 if lane == "l1" else MIN_CANDLES_L2
+        if lane == "l1" and too_young_l1(r):
             r["candle_hours"] = 0
             r["candle_fail"] = "younger than 12h"
             continue
@@ -346,8 +541,8 @@ def cheap_candles(rows):
             time.sleep(0.25)
             continue
         r["candle_hours"] = len(cl or [])
-        if len(cl or []) < MIN_CANDLES:
-            r["candle_fail"] = f"only {len(cl or [])} hourly candles"
+        if len(cl or []) < need:
+            r["candle_fail"] = f"only {len(cl or [])} hourly candles (need {need})"
         else:
             out.append(r)
         time.sleep(0.25)
@@ -587,28 +782,28 @@ def antirug(r, rc, oc, hf):
 
 
 def cheap_adj10_and_security(rows):
-    """RugCheck + adj10 cheap gate, then anti-rug/hidden-fee only on adj10 passers."""
-    adj_pass = []
+    """RugCheck + anti-rug/hidden-fee. adj10 is recorded and shadow-logged, not a gate."""
+    scored = []
     full_pass = []
     for r in rows:
         try:
             rc = rugcheck_report(r["token"], r.get("pool"))
         except Exception as e:
             r["adj10_fail"] = f"rugcheck {e}"[:120]
+            r["antirug_fails"] = [f"rugcheck {e}"[:120]]
             time.sleep(0.5)
             continue
         r["rc"] = rc
         adj = rc.get("adj10")
         if adj is None:
-            r["adj10_fail"] = "adj10 missing"
-            time.sleep(0.5)
-            continue
-        r["adj10"] = adj
-        if adj > ADJ10_MAX:
-            r["adj10_fail"] = f"adj10 {adj:.1f}% > {ADJ10_MAX:.0f}%"
-            time.sleep(0.5)
-            continue
-        adj_pass.append(r)
+            r["adj10_shadow"] = "adj10 missing"
+        else:
+            r["adj10"] = adj
+            if adj > ADJ10_MAX:
+                r["adj10_shadow"] = f"adj10 {adj:.1f}% > {ADJ10_MAX:.0f}% (shadow only, not a gate)"
+            else:
+                r["adj10_shadow"] = "ok"
+        scored.append(r)
 
         try:
             oc = onchain_mint(r["token"])
@@ -624,10 +819,10 @@ def cheap_adj10_and_security(rows):
         if not fails:
             full_pass.append(r)
         time.sleep(0.55)
-    return adj_pass, full_pass
+    return scored, full_pass
 
 
-# ---------------------------------------------------------------- state / webhook
+# ---------------------------------------------------------------- state / webhook / shadow
 def load_alerted():
     if not ALERT_STATE.exists():
         return {}
@@ -681,6 +876,7 @@ def payload_coin(r, ts):
         "mcap": cap_of(r),
         "liq": r.get("liq") or 0,
         "vol": r.get("vol24") or 0,
+        "lane": r.get("lane"),
         "checks": r.get("checks") or {},
         "timestamp": ts,
     }
@@ -716,41 +912,135 @@ def mark_alerted(passers, state, ts):
     save_alerted(state)
 
 
+def _shadow_record(r, ts, passed=False):
+    rc = r.get("rc") or {}
+    reasons = []
+    if r.get("cheap_fail"):
+        reasons.append(r["cheap_fail"])
+    if r.get("candle_fail"):
+        reasons.append(r["candle_fail"])
+    if r.get("adj10_shadow") and r.get("adj10_shadow") not in ("ok", None):
+        reasons.append(r["adj10_shadow"])
+    if r.get("adj10_fail"):
+        reasons.append(r["adj10_fail"])
+    if r.get("antirug_fails"):
+        reasons.extend(r["antirug_fails"])
+    if passed:
+        status = "pass"
+    elif r.get("antirug_fails") or r.get("adj10_fail"):
+        status = "antirug_fail"
+    elif r.get("candle_fail"):
+        status = "candle_fail"
+    elif r.get("cheap_fail"):
+        status = "cheap_fail"
+    else:
+        status = "other"
+    return {
+        "ts": ts,
+        "mint": r.get("token"),
+        "symbol": r.get("symbol") or "?",
+        "lane": r.get("lane"),
+        "liq": r.get("liq") or 0,
+        "vol24": r.get("vol24") or 0,
+        "mcap": cap_of(r),
+        "turnover": r.get("turnover") if r.get("turnover") is not None else turnover_of(r),
+        "age_s": r.get("age_s"),
+        "candles": r.get("candle_hours"),
+        "holders": rc.get("totalHolders"),
+        "raw10": rc.get("raw10"),
+        "adj10": r.get("adj10") if r.get("adj10") is not None else rc.get("adj10"),
+        "passed": bool(passed),
+        "status": status,
+        "reasons": reasons,
+    }
+
+
+def write_shadow(rows, passers, ts):
+    """Append one compact record per candidate (liq, holders, top-10, lane, pass/fail)."""
+    passer_mints = {r["token"] for r in passers}
+    try:
+        with open(SHADOW_PATH, "a") as f:
+            for r in rows:
+                rec = _shadow_record(r, ts, passed=r.get("token") in passer_mints)
+                f.write(json.dumps(rec, default=str) + "\n")
+    except Exception as e:
+        log_line(f"{ts} shadow_log write failed: {e}")
+
+
 # ---------------------------------------------------------------- run
+def _empty_lane():
+    return {"candidates": 0, "liq": 0, "vol": 0, "candles": 0, "adj10_shadow": 0, "adj10_flagged": 0, "antirug": 0}
+
+
 def run(post=True):
     t0 = time.time()
     ts = iso_et()
     staged = {
         "collected": 0,
+        "new_pools": 0,
+        "too_fresh": 0,
         "liq": 0,
         "vol": 0,
         "candles": 0,
-        "adj10": 0,
+        "adj10_shadow": 0,
+        "adj10_flagged": 0,
         "antirug": 0,
         "new": 0,
         "posted": 0,
         "skipped_position": 0,
+        "l1": _empty_lane(),
+        "l2": _empty_lane(),
     }
 
     if POSITION_FLAG.exists():
         staged["skipped_position"] = 1
         runtime = time.time() - t0
         log_line(
-            f"{ts} skipped_position=1 collected=0 liq=0 vol=0 candles=0 adj10=0 "
+            f"{ts} skipped_position=1 collected=0 liq=0 vol=0 candles=0 adj10_shadow=0 "
             f"antirug=0 new=0 posted=0 runtime_s={runtime:.1f}"
         )
         return {"skipped_position": True, "runtime_s": runtime, "staged": staged, "passers": []}
 
-    rows = collect_gt()
+    rows, n_new = collect_universe()
+    staged["new_pools"] = n_new
     rows = enrich_dexscreener(rows)
     numeric, counts = cheap_numeric(rows)
-    staged.update(counts)
+    staged["collected"] = counts.get("collected", len(rows))
+    staged["too_fresh"] = counts.get("too_fresh", 0)
+    staged["liq"] = counts.get("liq", 0)
+    staged["vol"] = counts.get("vol", 0)
+    for lane in ("l1", "l2"):
+        staged[lane]["candidates"] = counts.get(lane, {}).get("candidates", 0)
+        staged[lane]["liq"] = counts.get(lane, {}).get("liq", 0)
+        staged[lane]["vol"] = counts.get(lane, {}).get("vol", 0)
+
     candle_ok = cheap_candles(numeric)
     staged["candles"] = len(candle_ok)
-    print(f"  cheap gates: collected={staged['collected']} liq={staged['liq']} vol={staged['vol']} candles pending", flush=True)
-    adj_ok, full_ok = cheap_adj10_and_security(candle_ok)
-    staged["adj10"] = len(adj_ok)
+    for r in candle_ok:
+        if r.get("lane") in ("l1", "l2"):
+            staged[r["lane"]]["candles"] += 1
+    print(
+        f"  cheap gates: collected={staged['collected']} new_pools={staged['new_pools']} "
+        f"liq={staged['liq']} vol={staged['vol']} "
+        f"l1 vol={staged['l1']['vol']} l2 vol={staged['l2']['vol']} candles pending",
+        flush=True,
+    )
+    scored, full_ok = cheap_adj10_and_security(candle_ok)
+    staged["adj10_shadow"] = len(scored)
+    staged["adj10_flagged"] = sum(
+        1 for r in scored if (r.get("adj10") is not None and r.get("adj10") > ADJ10_MAX)
+    )
     staged["antirug"] = len(full_ok)
+    for r in scored:
+        lane = r.get("lane")
+        if lane in ("l1", "l2"):
+            staged[lane]["adj10_shadow"] += 1
+            if r.get("adj10") is not None and r.get("adj10") > ADJ10_MAX:
+                staged[lane]["adj10_flagged"] += 1
+    for r in full_ok:
+        if r.get("lane") in ("l1", "l2"):
+            staged[r["lane"]]["antirug"] += 1
+
     fresh, state = dedupe(full_ok)
     staged["new"] = len(fresh)
 
@@ -762,13 +1052,31 @@ def run(post=True):
         # Manual/test runs still record alerts only when a real POST happens.
         staged["posted"] = 0
 
+    write_shadow(rows, full_ok, ts)
+
     runtime = time.time() - t0
     staged["runtime_s"] = round(runtime, 2)
     log_line(
-        f"{ts} collected={staged['collected']} liq={staged['liq']} "
-        f"vol={staged['vol']} candles={staged['candles']} adj10={staged['adj10']} "
+        f"{ts} collected={staged['collected']} new_pools={staged['new_pools']} "
+        f"liq={staged['liq']} vol={staged['vol']} candles={staged['candles']} "
+        f"adj10_shadow={staged['adj10_shadow']} adj10_flagged={staged['adj10_flagged']} "
         f"antirug={staged['antirug']} new={staged['new']} posted={staged['posted']} "
+        f"l1={staged['l1']['candidates']}/{staged['l1']['liq']}/{staged['l1']['vol']}/"
+        f"{staged['l1']['candles']}/{staged['l1']['antirug']} "
+        f"l2={staged['l2']['candidates']}/{staged['l2']['liq']}/{staged['l2']['vol']}/"
+        f"{staged['l2']['candles']}/{staged['l2']['antirug']} "
         f"skipped_position={staged['skipped_position']} runtime_s={runtime:.1f} webhook={status}"
+    )
+    print(
+        f"  FUNNEL collected={staged['collected']} new_pools={staged['new_pools']} too_fresh={staged['too_fresh']}\n"
+        f"    L1: cand={staged['l1']['candidates']} liq={staged['l1']['liq']} vol={staged['l1']['vol']} "
+        f"candles={staged['l1']['candles']} adj10_shadow={staged['l1']['adj10_shadow']} "
+        f"adj10_flagged={staged['l1']['adj10_flagged']} antirug={staged['l1']['antirug']}\n"
+        f"    L2: cand={staged['l2']['candidates']} liq={staged['l2']['liq']} vol={staged['l2']['vol']} "
+        f"candles={staged['l2']['candles']} adj10_shadow={staged['l2']['adj10_shadow']} "
+        f"adj10_flagged={staged['l2']['adj10_flagged']} antirug={staged['l2']['antirug']}\n"
+        f"    new={staged['new']} posted={staged['posted']} webhook={status} runtime_s={runtime:.1f}",
+        flush=True,
     )
 
     summary = {
@@ -780,9 +1088,11 @@ def run(post=True):
             {
                 "mint": r["token"],
                 "symbol": r.get("symbol"),
+                "lane": r.get("lane"),
                 "mcap": cap_of(r),
                 "liq": r.get("liq"),
                 "vol": r.get("vol24"),
+                "turnover": round(r.get("turnover") or turnover_of(r), 3),
                 "vl": round(vl_of(r), 2),
             }
             for r in numeric
@@ -790,28 +1100,30 @@ def run(post=True):
         "passers": [payload_coin(r, ts) for r in full_ok],
         "fresh": [payload_coin(r, ts) for r in fresh],
         "candle_fails": [
-            {"mint": r["token"], "symbol": r.get("symbol"), "reason": r.get("candle_fail")}
+            {"mint": r["token"], "symbol": r.get("symbol"), "lane": r.get("lane"), "reason": r.get("candle_fail")}
             for r in numeric
             if r.get("candle_fail")
         ],
-        "adj10_fails": [
+        "adj10_shadow_flags": [
             {
                 "mint": r["token"],
                 "symbol": r.get("symbol"),
+                "lane": r.get("lane"),
                 "adj10": r.get("adj10"),
-                "reason": r.get("adj10_fail"),
+                "note": r.get("adj10_shadow"),
             }
-            for r in candle_ok
-            if r.get("adj10_fail")
+            for r in scored
+            if r.get("adj10") is not None and r.get("adj10") > ADJ10_MAX
         ],
         "antirug_fails": [
             {
                 "mint": r["token"],
                 "symbol": r.get("symbol"),
+                "lane": r.get("lane"),
                 "adj10": r.get("adj10"),
                 "fails": r.get("antirug_fails"),
             }
-            for r in adj_ok
+            for r in scored
             if r.get("antirug_fails")
         ],
     }
