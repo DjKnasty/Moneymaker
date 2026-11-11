@@ -5,7 +5,7 @@ Read-only. Never signs a transaction, never touches a wallet, never trades.
 No LLM calls. Standard library only.
 
 Cheap gates (screener data first: GeckoTerminal + DexScreener):
-  - market cap $250K-$1M
+  - (market cap gate removed 2026-11-11: no lower or upper bound)
   - liquidity $150K-$1M
   - 24h volume >= $1.5M and 7-20x liquidity
   - at least 12 hourly candles
@@ -43,7 +43,7 @@ RUGCHECK = "https://api.rugcheck.xyz/v1/tokens/{mint}/report"
 RPC = "https://api.mainnet-beta.solana.com"
 UA = {"User-Agent": "memescan-lite/1.0", "accept": "application/json"}
 
-MC_LO, MC_HI = 250_000, 1_000_000
+# Market cap gate removed 2026-11-11 (no lower or upper bound on market cap).
 LIQ_LO, LIQ_HI = 150_000, 1_000_000
 VOL_LO = 1_500_000
 VL_LO, VL_HI = 7.0, 20.0
@@ -295,9 +295,7 @@ def vl_of(r):
 
 def cheap_numeric(rows):
     staged = {"collected": len(rows)}
-    mcap = [r for r in rows if MC_LO <= cap_of(r) <= MC_HI]
-    staged["mcap"] = len(mcap)
-    liq = [r for r in mcap if LIQ_LO <= (r.get("liq") or 0) <= LIQ_HI]
+    liq = [r for r in rows if LIQ_LO <= (r.get("liq") or 0) <= LIQ_HI]
     staged["liq"] = len(liq)
     vol = [r for r in liq if (r.get("vol24") or 0) >= VOL_LO and VL_LO <= vl_of(r) <= VL_HI]
     staged["vol"] = len(vol)
@@ -724,7 +722,6 @@ def run(post=True):
     ts = iso_et()
     staged = {
         "collected": 0,
-        "mcap": 0,
         "liq": 0,
         "vol": 0,
         "candles": 0,
@@ -739,7 +736,7 @@ def run(post=True):
         staged["skipped_position"] = 1
         runtime = time.time() - t0
         log_line(
-            f"{ts} skipped_position=1 collected=0 mcap=0 liq=0 vol=0 candles=0 adj10=0 "
+            f"{ts} skipped_position=1 collected=0 liq=0 vol=0 candles=0 adj10=0 "
             f"antirug=0 new=0 posted=0 runtime_s={runtime:.1f}"
         )
         return {"skipped_position": True, "runtime_s": runtime, "staged": staged, "passers": []}
@@ -750,7 +747,7 @@ def run(post=True):
     staged.update(counts)
     candle_ok = cheap_candles(numeric)
     staged["candles"] = len(candle_ok)
-    print(f"  cheap gates: collected={staged['collected']} mcap={staged['mcap']} liq={staged['liq']} vol={staged['vol']} candles pending", flush=True)
+    print(f"  cheap gates: collected={staged['collected']} liq={staged['liq']} vol={staged['vol']} candles pending", flush=True)
     adj_ok, full_ok = cheap_adj10_and_security(candle_ok)
     staged["adj10"] = len(adj_ok)
     staged["antirug"] = len(full_ok)
@@ -768,7 +765,7 @@ def run(post=True):
     runtime = time.time() - t0
     staged["runtime_s"] = round(runtime, 2)
     log_line(
-        f"{ts} collected={staged['collected']} mcap={staged['mcap']} liq={staged['liq']} "
+        f"{ts} collected={staged['collected']} liq={staged['liq']} "
         f"vol={staged['vol']} candles={staged['candles']} adj10={staged['adj10']} "
         f"antirug={staged['antirug']} new={staged['new']} posted={staged['posted']} "
         f"skipped_position={staged['skipped_position']} runtime_s={runtime:.1f} webhook={status}"

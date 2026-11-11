@@ -7,13 +7,16 @@ Live path on the box: `/workspace/memescan/lite/`.
 
 This copy also lives in `DjKnasty/Moneymaker` under `memescan-lite/`.
 
+## Change log
+
+- 2026-11-11: market cap gate removed (no lower or upper bound). All other gates unchanged.
+
 ## What it does
 
 Every 15 minutes, 24/7 (America/New_York clock), a free local script:
 
 1. Pulls high-volume Solana pools from GeckoTerminal and overlays DexScreener mcap, liquidity, volume, and price.
 2. Applies cheap gates first (screener data, then candles, then adjusted top-10):
-   - market cap $250K–$1M
    - liquidity $150K–$1M
    - 24-hour volume at least $1.5M and 7–20x liquidity
    - at least 12 hourly candles (skips tokens younger than 12 hours without a candle fetch)
