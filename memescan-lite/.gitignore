@@ -1,0 +1,12 @@
+# secrets and runtime state — never commit
+.env
+scan.log
+POSITION_OPEN
+alerted.json
+last_result.json
+scan_lite.pid
+wrapper.pid
+STOP
+__pycache__/
+*.pyc
+*.pyo
