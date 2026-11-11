@@ -6,7 +6,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Four unframed charts, printed when you order them.",
+            "text": "Four unframed 18 by 24 inch charts, printed when you order them.",
             "text_style": "body"
           }
         },
@@ -24,7 +24,8 @@
       },
       "block_order": ["text", "button"],
       "settings": {
-        "image": "shopify://shop_images/solar-system-mockup.jpg",
+        "image": "shopify://shop_images/moon-phases-mockup.jpg",
+        "image_2": "shopify://shop_images/solar-system-mockup.jpg",
         "image_overlay_opacity": 40,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
@@ -33,7 +34,7 @@
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-3",
         "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
+        "stack_images_on_mobile": true,
         "show_text_below": true
       }
     },
