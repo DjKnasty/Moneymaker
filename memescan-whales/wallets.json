@@ -1,0 +1,220 @@
+{
+  "updated": "2026-11-12T08:42:26-05:00",
+  "notes": "7 Solana wallets with on-chain meme-coin trading activity across roughly the last year, plus a profitable all-time track record on GMGN. Excluded bots (hundreds of trades/day), wash_trader / snipe_bot / fresh_wallet / top_dev tags, all-time losers, and wallets whose all-time PnL was just the last 30 days. el charto (CCUcjek5\u2026) was a finalist on GMGN longevity but was dropped: recent transactions do not show this address as fee payer, so buys cannot be detected reliably. PnL figures are from GMGN public wallet profiles on 2026-11-12. Year-long activity was confirmed with Helius getTransactionsForAddress in a window ~13\u201310 months ago (2025-10 to 2026-01) and a mid window (2026-04 to 2026-06). Typical buy size is the median SOL spent on recent fee-payer meme buys.",
+  "min_buy_sol": 1.0,
+  "wallets": [
+    {
+      "id": "0xDavid",
+      "address": "J485YzQjuJPLYoFEYjrjxd7NAoLHTiyUU63JwK7kLxRr",
+      "name": "\u91d1\u72d7\u6316\u6398\u673a | 0xDavid",
+      "twitter": "HunterOnlyETH",
+      "source": "GMGN KOL 30d leaderboard + Helius on-chain verification",
+      "reason": "Named KOL with ~$1.95M all-time realized profit (32.5% all-time PnL), 121x the last-30d profit, so this is a long career rather than a recent lucky streak. Recent 30d: 69.5% win rate, $16k realized, 191 buys / 234 sells, ~15 tx/day \u2014 human pace. System account, not a contract. Active fee-payer Pump.fun / Pump AMM meme buys today, typical size ~3.5 SOL.",
+      "tags": [
+        "kol",
+        "axiom",
+        "gmgn"
+      ],
+      "typical_buy_sol": 3.5,
+      "evidence": {
+        "all_time_realized_profit_usd": 1949298,
+        "all_time_pnl": 0.325,
+        "realized_profit_30d_usd": 16048,
+        "winrate_30d": 0.695,
+        "approx_winning_tokens_30d": 133,
+        "buy_30d": 191,
+        "sell_30d": 234,
+        "txs_per_day_30d": 14.6,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active 2026-11-12, fee-payer meme buys"
+        }
+      }
+    },
+    {
+      "id": "tech",
+      "address": "5d3jQcuUvsuHyZkhdp78FFqc7WogrzZpTtec1X9VNkuE",
+      "name": "tech",
+      "twitter": "tech",
+      "source": "GMGN KOL 30d leaderboard + Helius on-chain verification",
+      "reason": "Longest career proxy in the set: ~$1.03M all-time realized profit (26.7% all-time PnL), 248x the last-30d profit. Quiet swing style (~5 tx/day, long holds). Lower recent win rate (34%) but consistent all-time edge. System account. Typical recent meme buy ~1.1 SOL (some tickets sit just under the 1 SOL alert floor).",
+      "tags": [
+        "kol",
+        "axiom",
+        "photon",
+        "bullx"
+      ],
+      "typical_buy_sol": 1.1,
+      "evidence": {
+        "all_time_realized_profit_usd": 1026400,
+        "all_time_pnl": 0.267,
+        "realized_profit_30d_usd": 4100,
+        "winrate_30d": 0.34,
+        "approx_winning_tokens_30d": 16,
+        "buy_30d": 48,
+        "sell_30d": 85,
+        "txs_per_day_30d": 5.1,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active, fee-payer meme buys"
+        }
+      }
+    },
+    {
+      "id": "nyhrox",
+      "address": "6S8GezkxYUfZy9JPtYnanbcZTMB87Wjt1qx3c6ELajKC",
+      "name": "nyhrox",
+      "twitter": "nyhrox",
+      "source": "GMGN KOL 30d leaderboard + Helius on-chain verification",
+      "reason": "Large, long-career KOL: ~$1.85M all-time realized profit (9.1% all-time PnL), 49x last-30d profit. Holds ~495 SOL. Busier than the others (~53 tx/day) but well under a bot-level hundreds-per-day, and not tagged wash_trader or snipe_bot. Typical meme tickets are large (~15 SOL).",
+      "tags": [
+        "kol",
+        "axiom",
+        "photon"
+      ],
+      "typical_buy_sol": 15.0,
+      "evidence": {
+        "all_time_realized_profit_usd": 1850000,
+        "all_time_pnl": 0.091,
+        "realized_profit_30d_usd": 37600,
+        "winrate_30d": 0.394,
+        "approx_winning_tokens_30d": 312,
+        "buy_30d": 791,
+        "sell_30d": 530,
+        "txs_per_day_30d": 52.8,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active, fee-payer meme buys of 10\u201360 SOL"
+        }
+      }
+    },
+    {
+      "id": "Zemrics",
+      "address": "EP5mvfhGv6x1XR33Fd8eioiYjtRXAawafPmkz9xBpDvG",
+      "name": "Zemrics",
+      "twitter": "Zemrics",
+      "source": "GMGN KOL 30d leaderboard + Helius on-chain verification",
+      "reason": "~$184k all-time realized profit (10.8% all-time PnL), 32x last-30d profit. Human pace (~15 tx/day). Recent fee-payer buys on Raydium LaunchLab, typical size ~1.6 SOL. Fast-tx ratio ~30% is noted but the wallet is not tagged as a sniper bundle.",
+      "tags": [
+        "kol",
+        "axiom",
+        "photon",
+        "gmgn"
+      ],
+      "typical_buy_sol": 1.6,
+      "evidence": {
+        "all_time_realized_profit_usd": 184300,
+        "all_time_pnl": 0.108,
+        "realized_profit_30d_usd": 5800,
+        "winrate_30d": 0.395,
+        "approx_winning_tokens_30d": 76,
+        "buy_30d": 193,
+        "sell_30d": 214,
+        "txs_per_day_30d": 14.7,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active, fee-payer meme buys"
+        }
+      }
+    },
+    {
+      "id": "OGAntD",
+      "address": "215nhcAHjQQGgwpQSJQ7zR26etbjjtVdW74NLzwEgQjP",
+      "name": "OGAntD",
+      "twitter": "OGAntD",
+      "source": "GMGN KOL 30d leaderboard + Helius on-chain verification",
+      "reason": "Largest all-time absolute profit in the set: ~$2.16M realized (5.0% all-time PnL), 20x last-30d. Low 21% 30d win rate with large tickets (~5\u201310 SOL) and long holds \u2014 a few-big-winners style, not a bot. ~12 tx/day, ~110 SOL, system account.",
+      "tags": [
+        "kol",
+        "axiom",
+        "photon",
+        "gmgn",
+        "bluechip_owner"
+      ],
+      "typical_buy_sol": 7.5,
+      "evidence": {
+        "all_time_realized_profit_usd": 2159600,
+        "all_time_pnl": 0.05,
+        "realized_profit_30d_usd": 108900,
+        "winrate_30d": 0.214,
+        "approx_winning_tokens_30d": 39,
+        "buy_30d": 183,
+        "sell_30d": 168,
+        "txs_per_day_30d": 12.1,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active, fee-payer meme buys of 5\u201310 SOL"
+        }
+      }
+    },
+    {
+      "id": "Ashtoshii",
+      "address": "8MoW9mtbEz6z3gPuAdYb1yWhjCAxQSYqpcTb1CQgN5qb",
+      "name": "Ashtoshii",
+      "twitter": "Ashtoshii",
+      "source": "GMGN KOL 30d leaderboard + Helius on-chain verification",
+      "reason": "~$237k all-time realized profit (15.5% all-time PnL), 17x last-30d profit. Human pace (~23 tx/day), 0% fast-tx ratio. Recent win rate is low (15%) but all-time edge is solid. Typical fee-payer meme buy ~3 SOL.",
+      "tags": [
+        "kol",
+        "gmgn"
+      ],
+      "typical_buy_sol": 3.0,
+      "evidence": {
+        "all_time_realized_profit_usd": 236800,
+        "all_time_pnl": 0.155,
+        "realized_profit_30d_usd": 13900,
+        "winrate_30d": 0.154,
+        "approx_winning_tokens_30d": 52,
+        "buy_30d": 337,
+        "sell_30d": 360,
+        "txs_per_day_30d": 23.4,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active, fee-payer meme buys"
+        }
+      }
+    },
+    {
+      "id": "Felix",
+      "address": "3uz65G8e463MA5FxcSu1rTUyWRtrRLRZYskKtEHHj7qn",
+      "name": "Felix",
+      "twitter": "Felix",
+      "source": "GMGN launchpad_smart / top_followed + Helius on-chain verification",
+      "reason": "~$237k all-time realized profit (8.7% all-time PnL), 17x last-30d profit. Launchpad-focused trader with long average holds. ~37 tx/day, not bot-level. System account, ~76 SOL, typical fee-payer meme buy ~2 SOL.",
+      "tags": [
+        "axiom",
+        "launchpad_smart",
+        "top_followed"
+      ],
+      "typical_buy_sol": 2.0,
+      "evidence": {
+        "all_time_realized_profit_usd": 236700,
+        "all_time_pnl": 0.087,
+        "realized_profit_30d_usd": 14200,
+        "winrate_30d": 0.372,
+        "approx_winning_tokens_30d": 191,
+        "buy_30d": 512,
+        "sell_30d": 558,
+        "txs_per_day_30d": 36.9,
+        "is_system_account": true,
+        "onchain_windows": {
+          "year_ago_2025_10_to_2026_01": "20+ txs",
+          "mid_2026_04_to_2026_06": "20+ txs",
+          "recent": "active, fee-payer meme buys"
+        }
+      }
+    }
+  ]
+}

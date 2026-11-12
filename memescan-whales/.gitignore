@@ -1,0 +1,13 @@
+# secrets and runtime state — never commit
+.env
+*.log
+alerts.jsonl
+state*.json
+alerted.json
+watch_whales.pid
+wrapper.pid
+STOP
+backfill.jsonl
+__pycache__/
+*.pyc
+*.pyo
