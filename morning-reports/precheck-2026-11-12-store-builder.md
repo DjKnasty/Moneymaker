@@ -22,7 +22,7 @@ The celestial paintings page on bhaeqw-9z is still live on theme Dawn - Celestia
 - The Ursa Major product body still says 1825 and is longer than the old short paragraph. Do not paste that paragraph over it. This run also did not add a public-domain sentence to it.
 - NightLens (`duv5f8-wt`) was not edited. Its homepage still responds.
 
-The same-day demand note was not in the repo when this run started. The Nov 11 demand note (`morning-reports/precheck-2026-11-11-trending-research.md`) did not open the shop. It still ranks a custom date-and-place star map ahead of these static plates. That map is not on this page. A static poster cannot take a date and a place.
+Today's demand note (`morning-reports/precheck-2026-11-12-trending-research.md`) did not open the shop. It still ranks a custom date-and-place star map ahead of these static plates. That map is not on this page. A static poster cannot take a date and a place.
 
 ## Needs his yes
 
