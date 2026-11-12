@@ -1,6 +1,16 @@
 # Celestial paintings page
 
-Print-on-demand store `bhaeqw-9z.myshopify.com` only. The public shop name on 2026-11-11 is Vintage Plate Co. The telescope shop was not edited. Nothing on this page is held in inventory. Printify prints each order.
+Print-on-demand store `bhaeqw-9z.myshopify.com` only. The public shop name on 2026-11-12 is Vintage Plate Co. The telescope shop was not edited. Nothing on this page is held in inventory. Printify prints each order.
+
+## 2026-11-12 draft (unpublished)
+
+The live theme is still "Dawn - Celestial paintings draft" (`188676014395`), role MAIN. Buyers still see Dawn's placeholder in the banner, then the page title a second time. This run did not write that theme. Its page template is still the Nov 9 file: `updatedAt` `2026-11-09T13:39:12Z`, size 2411. Its homepage is still size 6891, `updatedAt` `2026-11-09T13:38:18Z`.
+
+Unpublished theme "Dawn - Celestial page draft" (`188699902267`) is still UNPUBLISHED. This run did not copy a theme. On that copy only, yesterday's banner is unchanged: the moon mockup beside the solar-system mockup, stacked on a phone, with the line "Four unframed 18 by 24 inch charts, printed when you order them." A new multicolumn section, `pair`, sits under that banner. It uses two existing shop files and no upload. The left column is `shopify://shop_images/ursa-major-mockup.jpg` (MediaImage `49553950146875`, READY). The right column is `shopify://shop_images/orion-constellation-print-framed.jpg` (MediaImage `49632362463547`, READY). There is no Orion file named like the mockup series, so this draft uses the framed wall photo that was already in Files. The two columns stack on a phone. The file was written `2026-11-12T13:41:36Z`, size 4343. The theme was not published. A public `preview_theme_id=188699902267` request still served the live theme. Preview it in Admin.
+
+The page body was not written. `updatedAt` is still `2026-11-09T14:06:35Z`. The collection was not written. Order is still Moon Phase, Ursa Major, Orion, Solar System, and the description is still two sentences. Each of the four variants is still 18″×24″ matte at $31.99, compare-at $39.99. This run did not change a price. The homepage size line was not written on either theme.
+
+The Moon Phase product body still does not say the chart is original artwork or that it is not a photograph. Orion's product body and the solar-system product body still do not say the plate is public domain. Those three additions are in `celestial-paintings.apply.json` under `pending_revision_2026_11_12` with `apply: false`. They were not sent. The Ursa Major body already says 1825 and was not replaced.
 
 ## 2026-11-11 draft (unpublished)
 
@@ -78,7 +88,7 @@ A custom date-and-place star map, a moon tied to one date, and a twelve-sign ser
 ## Files
 
 - `pages/celestial-paintings.html` — proposed page body for the 2026-11-07 revision. Not uploaded. Do not paste it over the live page without a yes.
-- `templates/page.celestial-paintings.json` — Dawn layout: banner, the page copy, then a two-column portrait grid of four products from collection `celestial-paintings`. On 2026-11-11 the banner on unpublished theme `188699902267` uses the existing moon mockup and the existing solar-system mockup, and the line names 18 by 24 inches. There is still no second title. The live theme `188676014395` still has the Nov 9 file, with a placeholder banner and a repeated title.
+- `templates/page.celestial-paintings.json` — Dawn layout: banner, then Ursa Major and Orion, then the page copy, then a two-column portrait grid of four products from collection `celestial-paintings`. On 2026-11-12 the banner on unpublished theme `188699902267` is still the moon mockup beside the solar-system mockup. The new section uses the existing Ursa Major mockup and the existing Orion framed photo. There is still no second title. The live theme `188676014395` still has the Nov 9 file, with a placeholder banner and a repeated title.
 - `celestial-paintings.apply.json` — Nov 5 record has `"applied": true`. The 2026-11-06 block is `superseded_revision` with `"do_not_apply": true`. The 2026-11-07 block is `pending_revision` with `"applied": false` for the live page, the collection, and the Ursa year. The unpublished theme write is recorded on that block and is not a publish.
 
 ## Apply the 2026-11-07 revision only after a yes
@@ -91,13 +101,14 @@ A custom date-and-place star map, a moon tied to one date, and a twelve-sign ser
 6. The live page body already matches the HTML file, read `2026-11-10`. Do not send it again. Leave the page published.
 7. The collection order already matches the page, read `2026-11-10`. Do not reorder it. Add the extra description sentence on `collection_reorder_proposed` only if Thomas has said yes.
 8. Do not change the Ursa Major description. It already says 1825. Do not change that product's price.
-9. The current unpublished draft is theme `188699902267`. On 2026-11-11 the banner on that copy uses the moon mockup and the solar-system mockup. Do not write the live theme `188676014395`. Do not publish the copy. Do not upload it to NightLens. Do not treat `188676014395` as unpublished. Do not treat the Nov 5 theme `188599370043` as the current draft.
+9. The current unpublished draft is theme `188699902267`. On 2026-11-12 that copy keeps yesterday's banner and adds the Ursa Major mockup beside the existing Orion framed photo. Do not write the live theme `188676014395`. Do not publish the copy. Do not upload a new image. Do not upload it to NightLens. Do not treat `188676014395` as unpublished. Do not treat the Nov 5 theme `188599370043` as the current draft.
 10. Do not paste `ursa_year_proposed.proposed_body_html` over the live Ursa Major description. The live text already says 1825 and is longer than that paragraph.
 
 ## Still needs Thomas
 
-- Preview unpublished theme `188699902267` in Admin before anyone publishes it. Publishing would replace the placeholder banner with the moon mockup beside the solar-system mockup, name 18 by 24 inches in the banner line, and remove the repeated banner title. It was not published.
+- Preview unpublished theme `188699902267` in Admin before anyone publishes it. Publishing would replace the placeholder banner with the moon mockup beside the solar-system mockup, name 18 by 24 inches in the banner line, remove the repeated banner title, and show Ursa Major beside Orion under that banner. It was not published.
 - Say yes before the Moon Phase product gains the two sentences that call the chart original artwork and not a photograph. The rest of that description stays. Do not change its price.
+- Say yes before Orion's product page, or the solar-system product page, gains the sentence "The plate is public domain." The rest of each description stays. Do not change a price.
 - Say yes before the collection description gains the extra sentence that names the four charts in order. The order itself already matches the page.
 - Leave the Ursa Major description as it is. Do not replace it with the shorter 1825 paragraph.
 - Leave prices, the live page body, NightLens, the sticker, the hidden drafts, and the botanical and park collections alone.
@@ -106,7 +117,7 @@ A custom date-and-place star map, a moon tied to one date, and a twelve-sign ser
 
 ## Sources
 
-- [Celestial paintings page](https://bhaeqw-9z.myshopify.com/pages/celestial-paintings) (read 2026-11-11)
-- [Celestial Paintings collection](https://bhaeqw-9z.myshopify.com/collections/celestial-paintings) (read 2026-11-11)
+- [Celestial paintings page](https://bhaeqw-9z.myshopify.com/pages/celestial-paintings) (read 2026-11-12)
+- [Celestial Paintings collection](https://bhaeqw-9z.myshopify.com/collections/celestial-paintings) (read 2026-11-12)
 - `sources.json` date for the Ursa Major file: 1825
 - Dawn 16.1.1, confirmed by `Shopify.theme.schema_version` on the live page

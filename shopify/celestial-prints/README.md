@@ -13,7 +13,7 @@ not used, nothing deleted).
 
 Star-map and celestial wall-art page for this store only. No inventory. See [PAINTINGS.md](./PAINTINGS.md).
 
-The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-11 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Celestial paintings draft" (`188676014395`), role main. The page body matches `pages/celestial-paintings.html`. The collection order matches the page: Moon Phase, Ursa Major, Orion, Solar System. Buyers see a placeholder banner, the page text, and a four-product grid. Unpublished theme "Dawn - Celestial page draft" (`188699902267`) shows the existing moon mockup beside the existing solar-system mockup, and the banner line names 18 by 24 inches. It was not published. This run did not change a price.
+The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-12 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Celestial paintings draft" (`188676014395`), role main. The page body matches `pages/celestial-paintings.html`. The collection order matches the page: Moon Phase, Ursa Major, Orion, Solar System. Buyers see a placeholder banner, the page text, and a four-product grid. Unpublished theme "Dawn - Celestial page draft" (`188699902267`) keeps the moon mockup beside the solar-system mockup, and adds the existing Ursa Major mockup beside the existing Orion framed photo. It was not published. This run did not change a price.
 
 ## Products
 

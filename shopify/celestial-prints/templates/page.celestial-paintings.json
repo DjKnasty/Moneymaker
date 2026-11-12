@@ -38,6 +38,48 @@
         "show_text_below": true
       }
     },
+    "pair": {
+      "type": "multicolumn",
+      "blocks": {
+        "ursa": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ursa-major-mockup.jpg",
+            "title": "Ursa Major",
+            "text": "<p>The Great Bear, from Sidney Hall's <em>Urania's Mirror</em>, London, 1825. The plate is public domain. A frame shown in the photo is not part of the order.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/ursa-major-constellation-print"
+          }
+        },
+        "orion": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/orion-constellation-print-framed.jpg",
+            "title": "Orion",
+            "text": "<p>Orion the Hunter, from Flamsteed's <em>Atlas Céleste</em>, Plate 24, 1776. The plate is public domain. A frame shown in the photo is not part of the order.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/orion-constellation-print"
+          }
+        }
+      },
+      "block_order": ["ursa", "orion"],
+      "settings": {
+        "title": "Ursa Major and Orion",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -74,5 +116,5 @@
       }
     }
   },
-  "order": ["banner", "main", "paintings"]
+  "order": ["banner", "pair", "main", "paintings"]
 }
