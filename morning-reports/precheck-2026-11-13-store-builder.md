@@ -1,0 +1,46 @@
+# Store builder pre-check — 2026-11-13
+
+The celestial paintings page on bhaeqw-9z is still live on theme Dawn - Celestial paintings draft (188676014395), with the four paintings in the order Moon Phase, Ursa Major, Orion, then the solar system, and the collection in that same order. Buyers still see Dawn's placeholder drawing in the banner, and the banner heading still repeats the page title. This run did not copy a theme. On the unpublished theme Dawn - Celestial page draft (188699902267) only, yesterday's banner and the Ursa Major / Orion section are unchanged, and a new section places the existing moon mockup beside the existing solar-system mockup, with source lines, stacked on a phone. The live theme file was not written, nothing was published, no price was changed, and NightLens was not touched. Thomas still needs to preview that unpublished theme before anyone publishes it. He also still needs to decide on a Moon Phase sentence, a public-domain sentence on Orion, on the solar system, and on Ursa Major, the collection's extra sentence, and the homepage size line.
+
+## Prepared
+
+- `templates/page.celestial-paintings.json` on unpublished theme `gid://shopify/OnlineStoreTheme/188699902267` only, written `2026-11-13T13:43:10Z`, size 5648. The role is still UNPUBLISHED. The banner is still the existing shop files `shopify://shop_images/moon-phases-mockup.jpg` and `shopify://shop_images/solar-system-mockup.jpg`, with the line "Four unframed 18 by 24 inch charts, printed when you order them." There is still no banner heading. Section `pair` is unchanged: the existing Ursa Major mockup beside the existing Orion framed photo, square ratio, one column on a phone. Under the banner, and above that pair, section `charts` is a two-column multicolumn titled "Moon Phase and the solar system." The left image is the existing shop file `shopify://shop_images/moon-phases-mockup.jpg` (MediaImage `49553950507323`, already READY). The right image is the existing shop file `shopify://shop_images/solar-system-mockup.jpg` (MediaImage `49553951490363`, already READY). The moon column says the chart is original artwork drawn for this shop and is not a photograph of the moon. The solar-system column says the plate is public domain. Both say a frame shown in the photo is not part of the order. No file was uploaded. The two columns use one column on a phone, and the image ratio is portrait. These caption rows read Moon Phase, Solar System, then Ursa Major, then Orion, because they follow the banner. The collection order was not changed. The grid is unchanged: collection `celestial-paintings`, four products, two desktop columns, `show_description` false. A public request with `preview_theme_id=188699902267` still served the live theme. Buyers do not see the draft.
+- The same file in the repo, plus `PAINTINGS.md`, the store README, `STATUS.md`, and `celestial-paintings.apply.json`. The new block is `pending_revision_2026_11_13`, and it is not a publish.
+- An Ursa Major description, stored with `apply: false`. It keeps the current 1825 paragraphs and the details list, and adds "The plate is public domain." to the first paragraph. The old short paragraph remains `do_not_apply`. It was not sent. The product `updatedAt` is `2026-11-12T18:46:15Z`.
+- The Orion description and the solar-system description from yesterday, still stored with `apply: false` and still not sent. Each current body still lacks "The plate is public domain." Orion `updatedAt` is `2026-11-12T18:46:16Z`. The solar-system product `updatedAt` is `2026-11-12T18:46:14Z`.
+- The Moon Phase description from Nov 11, still stored with `apply: false` and still not sent. The current body still does not say the chart is original artwork or that it is not a photograph. Its `updatedAt` is `2026-11-12T18:46:14Z`.
+- The collection's third sentence, still stored with `apply: false` and still not sent. The collection `updatedAt` is `2026-11-12T18:46:17Z`. The description is still the two sentences.
+- The homepage size replacement, still stored with `apply: false` and not written. The heading would become "18 × 24 in". The paragraph would say every poster on sale is 18 by 24 inches and that 12 by 16 and 24 by 36 are not on these listings.
+
+## What the store showed, and was left as it was
+
+- Shop `bhaeqw-9z`, public name Vintage Plate Co., plan Advanced. This run did not change the plan.
+- Live theme `188676014395`, role MAIN. Its page template `updatedAt` is still `2026-11-09T13:39:12Z` and its size is still 2411. The placeholder banner and the repeated heading are still what buyers see. A read of the public page still shows the placeholder drawing and the line "Four unframed charts, printed when you order them."
+- Unpublished theme `188699902267` homepage `templates/index.json` was not written. Size 6891, `updatedAt` `2026-11-10T13:49:48Z`. The live homepage was not written either. Size 6891, `updatedAt` `2026-11-09T13:38:18Z`. The size line on both copies still reads "12 × 16 in · 18 × 24 in · 24 × 36 in".
+- Unpublished theme `188754592059`, name "Dawn - VPC offer fix 11-12", role UNPUBLISHED, was already on the shop. Its page template is still size 2411, `updatedAt` `2026-11-12T18:29:08Z`. This run did not write that theme.
+- Page [Celestial paintings](https://bhaeqw-9z.myshopify.com/pages/celestial-paintings), id `166674628923`, still published. Body `updatedAt` `2026-11-09T14:06:35Z`. This run did not write the page.
+- Collection [Celestial Paintings](https://bhaeqw-9z.myshopify.com/collections/celestial-paintings), id `512824901947`, four products, manual, `updatedAt` `2026-11-12T18:46:17Z`. Order is Moon Phase, Ursa Major, Orion, Solar System. The description is still the two sentences. This run did not write the collection.
+- Each of the four variants is still 18″×24″ matte. A read on 2026-11-13 found price $30.00, compare-at $39.99, variant `updatedAt` `2026-11-12T18:46`. The Nov 12 morning read had been $31.99. This run did not write a product or a price. A read of the 25 active products found those four posters, twenty other posters at the same 18×24 price of $30.00, and the kiss-cut sticker at its earlier sticker prices. No active poster is 12×16 or 24×36. The hidden `*-original` drafts were not opened.
+- The Ursa Major product body still says 1825 and is longer than the old short paragraph. Do not paste that paragraph over it. This run did not send the added public-domain sentence either.
+- NightLens (`duv5f8-wt`) was not edited. Its homepage still responds.
+
+Today's demand note (`morning-reports/precheck-2026-11-13-trending-research.md`) did not write the shop. It still ranks a custom date-and-place star map ahead of these static plates. That map is not on this page. A static poster cannot take a date and a place. An antique drawn map of the moon's face is the next static plate in that note, and it is not on this page either. The note's public read of the four posters found $30.00, compare-at $39.99, the same figures this run read in Admin. It did not change a price.
+
+## Needs his yes
+
+- Preview "Dawn - Celestial page draft" (`188699902267`) in Admin, then decide whether that page should ever be published. Publishing would replace the placeholder with the moon mockup beside the solar-system mockup, put "18 by 24 inch" in the banner line, remove the repeated title, name Moon Phase and the solar system under the banner, and show the Ursa Major mockup beside the Orion framed photo. Do not publish it from this note. Do not write live theme `188676014395`. Do not write unpublished theme `188754592059`.
+- Add the two Moon Phase sentences only if he wants the product page to say the chart is original artwork and not a photograph. Do not change its price.
+- Add "The plate is public domain." to the Orion product, and the same sentence to the solar-system product, only if he wants those product pages to match the page. Do not change a price.
+- Add "The plate is public domain." to the Ursa Major product only if he wants that one sentence added to the current 1825 paragraph. Do not replace that paragraph with the old short one. Do not change its price.
+- Add the third collection sentence, the one that names the moon phases, Ursa Major, Orion, and the Copernican solar system, only if he wants it. Do not reorder the collection.
+- Leave every price as it is, including the $30.00 / compare-at $39.99 read on the four posters.
+- Leave the homepage size line alone unless he wants that copy changed. The replacement text is in the repo and was not written.
+- Leave NightLens alone.
+- A custom date-and-place star map, and a twelve-sign series, remain separate jobs.
+
+## Sources
+
+- [Celestial paintings page](https://bhaeqw-9z.myshopify.com/pages/celestial-paintings) (read 2026-11-13)
+- [Celestial Paintings collection](https://bhaeqw-9z.myshopify.com/collections/celestial-paintings) (read 2026-11-13)
+- Admin read of themes `188676014395`, `188699902267`, and `188754592059`, page `166674628923`, collection `512824901947`, and the four poster variants (read 2026-11-13)
+- Existing shop files `moon-phases-mockup.jpg`, `solar-system-mockup.jpg`, `ursa-major-mockup.jpg`, and `orion-constellation-print-framed.jpg` (read 2026-11-13, not uploaded)

@@ -38,6 +38,48 @@
         "show_text_below": true
       }
     },
+    "charts": {
+      "type": "multicolumn",
+      "blocks": {
+        "moon": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/moon-phases-mockup.jpg",
+            "title": "Moon Phase",
+            "text": "<p>Eight phases of the moon, from new through full and back. The chart is original artwork drawn for this shop. It is not a photograph of the moon. A frame shown in the photo is not part of the order.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/moon-phase-print"
+          }
+        },
+        "solar": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/solar-system-mockup.jpg",
+            "title": "Solar System",
+            "text": "<p>The Copernican solar system, from Andreas Cellarius's <em>Harmonia Macrocosmica</em>, Amsterdam, 1660. The plate is public domain. A frame shown in the photo is not part of the order.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/solar-system-chart-print"
+          }
+        }
+      },
+      "block_order": ["moon", "solar"],
+      "settings": {
+        "title": "Moon Phase and the solar system",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
     "pair": {
       "type": "multicolumn",
       "blocks": {
@@ -116,5 +158,5 @@
       }
     }
   },
-  "order": ["banner", "pair", "main", "paintings"]
+  "order": ["banner", "charts", "pair", "main", "paintings"]
 }

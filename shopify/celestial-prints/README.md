@@ -13,11 +13,11 @@ not used, nothing deleted).
 
 Star-map and celestial wall-art page for this store only. No inventory. See [PAINTINGS.md](./PAINTINGS.md).
 
-The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-12 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Celestial paintings draft" (`188676014395`), role main. The page body matches `pages/celestial-paintings.html`. The collection order matches the page: Moon Phase, Ursa Major, Orion, Solar System. Buyers see a placeholder banner, the page text, and a four-product grid. Unpublished theme "Dawn - Celestial page draft" (`188699902267`) keeps the moon mockup beside the solar-system mockup, and adds the existing Ursa Major mockup beside the existing Orion framed photo. It was not published. This run did not change a price.
+The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-13 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Celestial paintings draft" (`188676014395`), role main. The page body matches `pages/celestial-paintings.html`. The collection order matches the page: Moon Phase, Ursa Major, Orion, Solar System. Buyers see a placeholder banner, the page text, and a four-product grid. Unpublished theme "Dawn - Celestial page draft" (`188699902267`) keeps the moon mockup beside the solar-system mockup, names those two plates under the banner, and keeps the Ursa Major mockup beside the Orion framed photo. It was not published. A read on 2026-11-13 found $30.00, compare-at $39.99, on each of the four posters. This run did not change a price.
 
 ## Products
 
-Public price read on 2026-11-07 for each poster below: **$31.99**, compare-at **$39.99**, one 18x24 matte variant. Do not write a price from this file. The $39.99 figure is the earlier price Thomas set and is now the compare-at amount. No 24x36 variant is on these listings. The Solar System kiss-cut sticker (`15489779794235`) is not in the 24 public products. This run did not unpublish, delete, or restore it.
+Public price read on 2026-11-07 for each poster below: **$31.99**, compare-at **$39.99**, one 18x24 matte variant. A read on 2026-11-13 found **$30.00**, compare-at **$39.99**, on the same four variants. Do not write a price from this file. The $39.99 figure is the earlier price Thomas set and is now the compare-at amount. No 24x36 variant is on these listings. The Solar System kiss-cut sticker (`15489779794235`) is not in the 24 public products. This run did not unpublish, delete, or restore it.
 
 | Product | Size | Price observed 2026-11-07 | Shopify product id | Handle |
 | --- | --- | --- | --- | --- |
