@@ -1,0 +1,15 @@
+# secrets and runtime state — never commit
+.env
+scan.log
+POSITION_OPEN
+alerted.json
+last_result.json
+shadow_log.jsonl
+trades.jsonl
+risk_state.json
+scan_lite.pid
+wrapper.pid
+STOP
+__pycache__/
+*.pyc
+*.pyo

@@ -108,15 +108,281 @@
     "do_not_apply": true,
     "why": "Superseded on 2026-11-07. The live page was updated at 2026-11-06T13:07:09-05:00 and already names Orion. Pasting the old three-to-four HTML would put the solar system ahead of Orion and would drop the shorter Orion sentence now on the page."
   },
-  "pending_revision": {
+  "revision_2026_11_07_observed_2026_11_10": {
     "id": "2026-11-07-page-grid-alignment",
+    "applied": false,
+    "observed": "On 2026-11-10 the page body already matched the HTML file, the collection order already matched the page, and the Ursa Major description already said 1825 in a longer paragraph. This run did not apply this revision. Do not paste proposed_body_html over the live Ursa description."
+  },
+  "pending_revision": {
+    "id": "2026-11-10-banner-on-unpublished-copy",
+    "applied": false,
+    "publish": false,
+    "shop": "bhaeqw-9z.myshopify.com",
+    "do_not_apply_on": "duv5f8-wt.myshopify.com",
+    "why": "The Nov 9 theme 188676014395 is now MAIN. Its banner is still Dawn's placeholder, and the banner heading repeats the page title. This run copied that theme and wrote the banner image onto the unpublished copy only.",
+    "theme_draft_written_2026_11_10": {
+      "published": false,
+      "live_theme_write": false,
+      "source_theme_id": "gid://shopify/OnlineStoreTheme/188676014395",
+      "source_theme_name": "Dawn - Celestial paintings draft",
+      "source_role_after": "MAIN",
+      "source_file_updated_at_after": "2026-11-09T13:39:12Z",
+      "source_file_size_after": "2411",
+      "duplicate_id": "gid://shopify/OnlineStoreTheme/188699902267",
+      "duplicate_name": "Dawn - Celestial page draft",
+      "duplicate_role": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "file_updated_at": "2026-11-10T13:50:18Z",
+      "file_size": "2290",
+      "banner_image": "shopify://shop_images/solar-system-mockup.jpg",
+      "banner_image_is_existing_shop_file": true,
+      "banner_heading": "removed so the page h1 is the only Celestial paintings title",
+      "public_preview_theme_id": "served the live theme, not this draft"
+    },
+    "page_body": {
+      "already_matches_html_file": true,
+      "do_not_send_again": true,
+      "updated_at": "2026-11-09T14:06:35Z",
+      "is_published": true
+    },
+    "collection_reorder_proposed": {
+      "apply": false,
+      "already_in_this_order": true,
+      "collection_id": "gid://shopify/Collection/512824901947",
+      "updated_at": "2026-11-09T14:06:38Z",
+      "observed_order": [
+        "moon-phase-print",
+        "ursa-major-constellation-print",
+        "orion-constellation-print",
+        "solar-system-chart-print"
+      ],
+      "description_html_only_if_the_extra_sentence_is_approved": "<p>Star maps and celestial charts, printed when you order them. Unframed paintings on matte fine-art paper. No copy is kept on a shelf.</p><p>Each sheet is one subject from a named plate. These are not a custom night sky for a date or a city.</p><p>The four charts, in order, are the moon phases, Ursa Major, Orion, and the Copernican solar system.</p>"
+    },
+    "ursa_year_proposed": {
+      "apply": false,
+      "do_not_apply": true,
+      "why": "The live description already says 1825 and is longer than proposed_body_html. Pasting the short paragraph would remove the details list.",
+      "product_updated_at": "2026-11-10T02:09:12Z",
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_updated_at": "2026-11-09T04:18:43Z",
+      "do_not_change_price": true
+    },
+    "prices_observed_2026_11_10": {
+      "changed_by_this_run": false,
+      "do_not_write": true,
+      "variant_price": "31.99",
+      "compare_at_price": "39.99"
+    },
+    "needs_approval": [
+      "Preview unpublished theme 188699902267 in Admin. Do not publish it, and do not write live theme 188676014395.",
+      "Add the collection description's third sentence only if he wants the four titles named there. Do not reorder the collection.",
+      "Do not replace the Ursa Major description. Do not change any price.",
+      "Leave the homepage size line alone unless he wants that copy changed. It still names 12 by 16 and 24 by 36."
+    ]
+  },
+  "pending_revision_2026_11_11": {
+    "id": "2026-11-11-banner-second-image",
+    "applied_to_live": false,
+    "publish": false,
+    "shop": "bhaeqw-9z.myshopify.com",
+    "do_not_apply_on": "duv5f8-wt.myshopify.com",
+    "why": "The unpublished banner from 2026-11-10 showed only the solar-system mockup, which is the fourth painting. This run kept that file and added the existing moon mockup as the other half, on the same unpublished theme. The banner line now names 18 by 24 inches. Nothing was published.",
+    "theme_draft_written_2026_11_11": {
+      "published": false,
+      "live_theme_write": false,
+      "theme_id": "gid://shopify/OnlineStoreTheme/188699902267",
+      "theme_name": "Dawn - Celestial page draft",
+      "theme_role_after": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "file_updated_at": "2026-11-11T13:42:11Z",
+      "file_size": "2370",
+      "banner_image": "shopify://shop_images/moon-phases-mockup.jpg",
+      "banner_image_2": "shopify://shop_images/solar-system-mockup.jpg",
+      "banner_images_are_existing_shop_files": true,
+      "nothing_uploaded": true,
+      "stack_images_on_mobile": true,
+      "banner_text": "Four unframed 18 by 24 inch charts, printed when you order them.",
+      "banner_heading": "still absent",
+      "live_theme_id": "gid://shopify/OnlineStoreTheme/188676014395",
+      "live_theme_role_after": "MAIN",
+      "live_file_updated_at_after": "2026-11-09T13:39:12Z",
+      "live_file_size_after": "2411",
+      "draft_homepage_index_json": "not written; size 6891; updatedAt still 2026-11-10T13:49:48Z",
+      "public_preview_theme_id": "served the live theme, not this draft"
+    },
+    "page_body": {
+      "already_matches_html_file": true,
+      "do_not_send_again": true,
+      "updated_at": "2026-11-09T14:06:35Z",
+      "is_published": true
+    },
+    "moon_original_artwork_proposed": {
+      "apply": false,
+      "product_id": "gid://shopify/Product/15489780777275",
+      "handle": "moon-phase-print",
+      "why": "The page says the chart is original artwork and not a photograph. The product body does not. The proposed HTML keeps the second paragraph and the details list, and adds those two sentences to the first paragraph.",
+      "product_updated_at": "2026-11-09T10:00:32Z",
+      "variant_id": "gid://shopify/ProductVariant/67903128469819",
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_updated_at": "2026-11-09T04:18:43Z",
+      "do_not_change_price": true,
+      "proposed_body_html": "<p>The full lunar cycle in eight phases, from new moon through waxing crescent to full and back again. The chart is original artwork drawn for this shop. It is not a photograph of the moon.</p><p>A clean, quiet chart made for a bedroom wall or a reading corner, calm enough to live with every day.</p><ul>\n<li>\n<strong>Size:</strong> 18 × 24 inches</li>\n<li>\n<strong>Paper:</strong> Matte fine art paper</li>\n<li>\n<strong>Printed on demand:</strong> made to order by our print partner after you check out</li>\n<li>\n<strong>Frame not included:</strong> ships unframed in a rigid tube (framed photos show styling only)</li>\n</ul>"
+    },
+    "collection_extra_sentence": {
+      "apply": false,
+      "already_in_page_order": true,
+      "collection_id": "gid://shopify/Collection/512824901947",
+      "updated_at": "2026-11-09T14:06:38Z",
+      "description_html_only_if_approved": "<p>Star maps and celestial charts, printed when you order them. Unframed paintings on matte fine-art paper. No copy is kept on a shelf.</p><p>Each sheet is one subject from a named plate. These are not a custom night sky for a date or a city.</p><p>The four charts, in order, are the moon phases, Ursa Major, Orion, and the Copernican solar system.</p>"
+    },
+    "homepage_size_line_proposed": {
+      "apply": false,
+      "not_written": true,
+      "why": "Every active poster read on 2026-11-11 is 18 by 24 inches. The homepage still lists 12 by 16 and 24 by 36. This run did not edit that line, on the live theme or on the unpublished copy.",
+      "heading_only_if_approved": "18 × 24 in",
+      "text_only_if_approved": "<p>Every poster on sale is 18 by 24 inches, on matte paper, and ships unframed. A 12 by 16 inch size and a 24 by 36 inch size are not on these listings.</p>"
+    },
+    "prices_observed_2026_11_11": {
+      "changed_by_this_run": false,
+      "do_not_write": true,
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_title": "18″ x 24″ / Matte"
+    },
+    "needs_approval": [
+      "Preview unpublished theme 188699902267 in Admin. The banner is now the moon mockup beside the solar-system mockup, and the line names 18 by 24 inches. Do not publish it. Do not write live theme 188676014395.",
+      "Add the two original-artwork sentences to the Moon Phase product only if he wants them. Do not change its price.",
+      "Add the collection description's third sentence only if he wants the four titles named there. Do not reorder the collection.",
+      "Leave the Ursa Major description as it is. Leave every price as it is.",
+      "Leave the homepage size line alone unless he wants that copy changed."
+    ]
+  },
+  "pending_revision_2026_11_12": {
+    "id": "2026-11-12-ursa-orion-on-unpublished-copy",
+    "applied_to_live": false,
+    "publish": false,
+    "shop": "bhaeqw-9z.myshopify.com",
+    "do_not_apply_on": "duv5f8-wt.myshopify.com",
+    "why": "Yesterday's unpublished banner shows the moon and the solar system, which are the first and fourth paintings. The Ursa Major mockup and an Orion framed photo were already in Files. This run placed those two existing files under the banner, on the same unpublished theme. Nothing was uploaded and nothing was published.",
+    "theme_draft_written_2026_11_12": {
+      "published": false,
+      "live_theme_write": false,
+      "theme_copied": false,
+      "theme_id": "gid://shopify/OnlineStoreTheme/188699902267",
+      "theme_name": "Dawn - Celestial page draft",
+      "theme_role_after": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "file_updated_at": "2026-11-12T13:41:36Z",
+      "file_size": "4343",
+      "banner_unchanged_from_2026_11_11": true,
+      "new_section": "pair",
+      "new_section_type": "multicolumn",
+      "ursa_image": "shopify://shop_images/ursa-major-mockup.jpg",
+      "ursa_media_image_id": "gid://shopify/MediaImage/49553950146875",
+      "orion_image": "shopify://shop_images/orion-constellation-print-framed.jpg",
+      "orion_media_image_id": "gid://shopify/MediaImage/49632362463547",
+      "images_are_existing_shop_files": true,
+      "orion_mockup_series_file": "not in Files; the framed wall photo was used instead",
+      "nothing_uploaded": true,
+      "columns_mobile": "1",
+      "live_theme_id": "gid://shopify/OnlineStoreTheme/188676014395",
+      "live_theme_role_after": "MAIN",
+      "live_file_updated_at_after": "2026-11-09T13:39:12Z",
+      "live_file_size_after": "2411",
+      "draft_homepage_index_json": "not written; size 6891; updatedAt still 2026-11-10T13:49:48Z",
+      "live_homepage_index_json": "not written; size 6891; updatedAt still 2026-11-09T13:38:18Z",
+      "public_preview_theme_id": "served the live theme, not this draft"
+    },
+    "page_body": {
+      "already_matches_html_file": true,
+      "do_not_send_again": true,
+      "updated_at": "2026-11-09T14:06:35Z",
+      "is_published": true
+    },
+    "orion_public_domain_proposed": {
+      "apply": false,
+      "product_id": "gid://shopify/Product/15490090008891",
+      "handle": "orion-constellation-print",
+      "why": "The page says the plate is public domain. The product body does not. The proposed HTML keeps the second paragraph and the details list, and adds that sentence to the first paragraph.",
+      "product_updated_at": "2026-11-09T10:00:34Z",
+      "variant_id": "gid://shopify/ProductVariant/67904233898299",
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_updated_at": "2026-11-09T04:18:42Z",
+      "do_not_change_price": true,
+      "proposed_body_html": "<p>Orion, the Hunter, reproduced from Plate 24 of Flamsteed's <em>Atlas Céleste</em> (1776). The engraving shows Orion and the neighboring stars of the winter sky, with fine linework and rich color set against aged paper. The plate is public domain.</p><p>Its dramatic figure and detailed star field reward a close look, and it hangs handsomely in a study, hallway, or bedroom.</p><ul>\n<li>\n<strong>Artwork:</strong> Flamsteed's <em>Atlas Céleste</em>, Plate 24 (1776)</li>\n<li>\n<strong>Size:</strong> 18 × 24 inches</li>\n<li>\n<strong>Paper:</strong> Matte fine art paper</li>\n<li>\n<strong>Printed on demand:</strong> made to order by our print partner after you check out</li>\n<li>\n<strong>Frame not included:</strong> ships unframed in a rigid tube (framed photos show styling only)</li>\n</ul>"
+    },
+    "solar_public_domain_proposed": {
+      "apply": false,
+      "product_id": "gid://shopify/Product/15489779761467",
+      "handle": "solar-system-chart-print",
+      "why": "The page says the plate is public domain. The product body does not. The proposed HTML keeps the second paragraph and the details list, and adds that sentence to the first paragraph.",
+      "product_updated_at": "2026-11-09T16:16:13Z",
+      "variant_id": "gid://shopify/ProductVariant/67903126307131",
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_updated_at": "2026-11-09T04:18:43Z",
+      "do_not_change_price": true,
+      "proposed_body_html": "<p>In 1660, the Amsterdam cartographer Andreas Cellarius published <em>Harmonia Macrocosmica</em>, one of the most beautiful celestial atlases ever made. This chart, after his work, puts the Sun at the center inside a ring of the zodiac, with the orbits of the known planets and four seasonal views of Earth, all in hand-colored copperplate style. The plate is public domain.</p><p>Rich golds and deep blues give it the presence of a museum piece. It anchors a study, library, or living room wall and starts conversations.</p><ul>\n<li>\n<strong>Artwork:</strong> Antique engraved chart after Andreas Cellarius, <em>Harmonia Macrocosmica</em> (Amsterdam, 1660)</li>\n<li>\n<strong>Size:</strong> 18 × 24 inches</li>\n<li>\n<strong>Paper:</strong> Matte fine art paper</li>\n<li>\n<strong>Printed on demand:</strong> made to order by our print partner after you check out</li>\n<li>\n<strong>Frame not included:</strong> ships unframed in a rigid tube (framed photos show styling only)</li>\n</ul>"
+    },
+    "moon_original_artwork_still_unsent": {
+      "apply": false,
+      "where": "pending_revision_2026_11_11.moon_original_artwork_proposed",
+      "product_updated_at_still": "2026-11-09T10:00:32Z",
+      "do_not_change_price": true
+    },
+    "collection_extra_sentence_still_unsent": {
+      "apply": false,
+      "already_in_page_order": true,
+      "collection_id": "gid://shopify/Collection/512824901947",
+      "updated_at": "2026-11-09T14:06:38Z",
+      "where": "pending_revision_2026_11_11.collection_extra_sentence"
+    },
+    "ursa_year_still_do_not_apply": {
+      "apply": false,
+      "do_not_apply": true,
+      "why": "The live description already says 1825 and is longer than the old short paragraph. Do not paste that paragraph over it. This run did not add a public-domain sentence to it either."
+    },
+    "homepage_size_line_proposed": {
+      "apply": false,
+      "not_written": true,
+      "why": "Every active poster read on 2026-11-12 is 18 by 24 inches. The homepage still lists 12 by 16 and 24 by 36. This run did not edit that line, on the live theme or on the unpublished copy.",
+      "heading_only_if_approved": "18 × 24 in",
+      "text_only_if_approved": "<p>Every poster on sale is 18 by 24 inches, on matte paper, and ships unframed. A 12 by 16 inch size and a 24 by 36 inch size are not on these listings.</p>"
+    },
+    "prices_observed_2026_11_12": {
+      "changed_by_this_run": false,
+      "do_not_write": true,
+      "variant_price": "31.99",
+      "compare_at_price": "39.99",
+      "variant_title": "18″ x 24″ / Matte",
+      "active_products_read": 25,
+      "active_posters_at_18x24": 24,
+      "active_sticker": "kiss-cut-stickers",
+      "active_12x16_or_24x36": "none"
+    },
+    "needs_approval": [
+      "Preview unpublished theme 188699902267 in Admin. The banner is still the moon mockup beside the solar-system mockup, and a new section shows the Ursa Major mockup beside the Orion framed photo. Do not publish it. Do not write live theme 188676014395.",
+      "Add the two original-artwork sentences to the Moon Phase product only if he wants them. Do not change its price.",
+      "Add the public-domain sentence to Orion, and to the solar system, only if he wants those product pages to match the page. Do not change a price.",
+      "Add the collection description's third sentence only if he wants the four titles named there. Do not reorder the collection.",
+      "Leave the Ursa Major description as it is. Leave every price as it is.",
+      "Leave the homepage size line alone unless he wants that copy changed."
+    ]
+  },
+  "pending_revision_2026_11_07_body_kept_below": {
+    "id": "2026-11-07-page-grid-alignment",
+    "do_not_apply": true,
+    "superseded_on": "2026-11-10",
     "applied": false,
     "publish": false,
     "not_sent_to_shopify": true,
     "shop": "bhaeqw-9z.myshopify.com",
     "shop_name_observed": "Vintage Plate Co.",
     "do_not_apply_on": "duv5f8-wt.myshopify.com",
-    "why": "Read-only check on 2026-11-07. The live page already names four paintings, with Orion before the solar system. The collection still lists the solar system before Orion. The page is still the default page section: no banner and no product grid. The storefront theme is Dawn - Vintage Plate Co. Draft, id 188621029691, role main, Dawn 16.1.1. templates/page.celestial-paintings.json is not on that theme. Shopify admin was not authenticated, so nothing was uploaded.",
+    "why": "The live page already names four paintings, with Orion before the solar system. The collection still lists the solar system before Orion. The page a buyer opens is still the default page section. On 2026-11-09 the template was written to an unpublished duplicate of the current main theme. The live page body, the collection, and the Ursa year were not changed.",
     "page_body_file": "shopify/celestial-prints/pages/celestial-paintings.html",
     "page_body_changes_versus_live": [
       "Adds a link to /collections/celestial-paintings.",
@@ -130,16 +396,33 @@
       "published_at": "2026-11-05T09:00:50-05:00"
     },
     "theme_template": "shopify/celestial-prints/templates/page.celestial-paintings.json",
-    "theme_template_unchanged_this_run": true,
+    "theme_template_unchanged_this_run": false,
+    "theme_template_fix_2026-11-09": "show_description is false and description is a richtext paragraph. On this Dawn theme, show_description true prints the collection description and ignores the custom sentence.",
+    "theme_draft_written_2026-11-09": {
+      "published": false,
+      "live_theme_write": false,
+      "source_theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
+      "source_theme_name": "Dawn - Vintage Plate Co. Draft",
+      "source_role_after": "MAIN",
+      "duplicate_id": "gid://shopify/OnlineStoreTheme/188676014395",
+      "duplicate_name": "Dawn - Celestial paintings draft",
+      "duplicate_role": "UNPUBLISHED",
+      "file": "templates/page.celestial-paintings.json",
+      "file_updated_at": "2026-11-09T13:39:12Z",
+      "live_theme_file": "NOT_FOUND after the write",
+      "older_duplicate_not_used": "gid://shopify/OnlineStoreTheme/188599370043"
+    },
     "theme_template_changes": {
       "products_to_show": 4,
       "columns_desktop": 2,
       "collection": "celestial-paintings",
       "do_not_use_collection": "all-prints",
       "banner_text": "Four unframed charts, printed when you order them.",
+      "show_description": false,
+      "description": "<p>Four paintings, printed on demand. No stock held.</p>",
       "live_theme_id": "gid://shopify/OnlineStoreTheme/188621029691",
       "live_theme_name": "Dawn - Vintage Plate Co. Draft",
-      "where_to_put_it": "After a yes, copy onto an unpublished duplicate of theme 188621029691 only. Do not write that live theme. Do not publish any theme. The Nov 5 duplicate 188599370043 was copied from the older main theme 188589113659, which is not the theme the storefront is serving now."
+      "where_it_is": "On unpublished theme 188676014395 only. Do not write live theme 188621029691. Do not publish. Do not use the Nov 5 duplicate 188599370043."
     },
     "collection_observed_order": [
       "moon-phase-print",
@@ -192,7 +475,7 @@
       "Replace the live page body with pages/celestial-paintings.html.",
       "Reorder the Celestial Paintings collection so Orion is third and the solar system is fourth, and only then add the extra description sentence.",
       "Change the Ursa Major description year from 1824 to 1825. Do not change its price.",
-      "Upload templates/page.celestial-paintings.json onto an unpublished duplicate of theme 188621029691 only. Do not write the live theme and do not publish."
+      "Preview unpublished theme 188676014395. Do not publish it, and do not write live theme 188621029691. The template file is already on the unpublished copy."
     ]
   }
 }

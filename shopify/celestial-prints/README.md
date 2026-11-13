@@ -7,13 +7,13 @@ not used, nothing deleted).
 
 - Public: https://bhaeqw-9z.myshopify.com
 - Admin: https://admin.shopify.com/store/bhaeqw-9z
-- Plan: Trial, as last recorded. Not rechecked on 2026-11-07.
+- Plan: Advanced, read from the connected shop on 2026-11-09. This run did not change the plan. The Nov 7 note had left the trial plan unchecked.
 
 ## Celestial paintings page
 
 Star-map and celestial wall-art page for this store only. No inventory. See [PAINTINGS.md](./PAINTINGS.md).
 
-The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-07 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Vintage Plate Co. Draft" (`188621029691`). The page body, updated 2026-11-06, already names four paintings in this order: Moon Phase, Ursa Major, Orion, Solar System. The collection still lists the solar system before Orion. The page still has no banner and no product grid. A smaller page draft, plus a collection-order proposal, is in the repo and was not uploaded. This run did not change a price.
+The page, the collection, and a main-menu link are live from 2026-11-05. On 2026-11-12 the public shop name is Vintage Plate Co., and the storefront theme is "Dawn - Celestial paintings draft" (`188676014395`), role main. The page body matches `pages/celestial-paintings.html`. The collection order matches the page: Moon Phase, Ursa Major, Orion, Solar System. Buyers see a placeholder banner, the page text, and a four-product grid. Unpublished theme "Dawn - Celestial page draft" (`188699902267`) keeps the moon mockup beside the solar-system mockup, and adds the existing Ursa Major mockup beside the existing Orion framed photo. It was not published. This run did not change a price.
 
 ## Products
 
@@ -60,8 +60,7 @@ Print-ready masters are 4500x6000 PNG on the box at `/workspace/starart/art/`. T
 1. **No 24x36 on the live posters yet.** Printify is connected. The three poster
    listings are renamed, carry the original descriptions, and are $39.99 for 18x24.
    See **Nov 4, 2026: Printify cleanup**.
-2. **Trial plan.** `Plan: trial — you'll need to upgrade before you can start selling and
-   unlock full features`.
+2. **Plan.** On 2026-11-09 the connected shop read Advanced. This run did not change billing. The earlier note was `Plan: trial`.
 3. **Storefront password.** On 2026-11-04 a bot recorded that the public URL redirected to /password ("Opening soon") and that a trial store cannot drop that protection. On 2026-11-07 a request to `/password` ended on the storefront, and the paintings page returned the page itself. The trial plan was not rechecked on 2026-11-07.
 4. **`4exkcb-uk`** duplicate store needs Thomas's decision before anything is deleted.
 
