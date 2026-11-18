@@ -122,6 +122,114 @@
         "padding_bottom": 12
       }
     },
+    "paper": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "Size and paper",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "18 × 24 in",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Each of these four paintings is 18 by 24 inches, on matte paper, and is printed when you order it. It ships unframed. A 12 by 16 inch size and a 24 by 36 inch size are not on these listings. These sheets are not a custom night sky for a date or a city.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shipping and returns",
+            "button_link": "shopify://pages/shipping-returns",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text", "button"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "sheets": {
+      "type": "multicolumn",
+      "blocks": {
+        "moon": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/moon-phases.jpg",
+            "title": "Moon Phase",
+            "text": "<p>Eight phases, drawn for this shop. It is not a photograph of the moon. No frame is included.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/moon-phase-print"
+          }
+        },
+        "ursa": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/constellation-ursa-major.jpg",
+            "title": "Ursa Major",
+            "text": "<p>Sidney Hall, London, 1825. The plate is public domain. No frame is included.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/ursa-major-constellation-print"
+          }
+        },
+        "orion": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/371965412342891674_2048.jpg",
+            "title": "Orion",
+            "text": "<p>Flamsteed, Plate 24, 1776. The plate is public domain. No frame is included.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/orion-constellation-print"
+          }
+        },
+        "solar": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/solar-system.jpg",
+            "title": "Solar System",
+            "text": "<p>Cellarius, Amsterdam, 1660. The plate is public domain. No frame is included.</p>",
+            "link_label": "View the print",
+            "link": "shopify://products/solar-system-chart-print"
+          }
+        }
+      },
+      "block_order": ["moon", "ursa", "orion", "solar"],
+      "settings": {
+        "title": "The sheet you receive",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -158,5 +266,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "main", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "main", "paintings"]
 }
