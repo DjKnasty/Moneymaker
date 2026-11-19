@@ -230,6 +230,41 @@
         "padding_bottom": 12
       }
     },
+    "photos": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "The photos below",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "The frame is not included",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The four photos below show a frame so you can see the sheet on a wall. You receive the unframed 18 by 24 inch sheet. It is printed after you order it and ships in a rigid tube.</p>"
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -266,5 +301,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "paper", "sheets", "main", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "main", "photos", "paintings"]
 }
