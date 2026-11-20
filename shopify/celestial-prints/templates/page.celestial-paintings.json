@@ -230,6 +230,41 @@
         "padding_bottom": 12
       }
     },
+    "material": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "The material",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Matte paper, not canvas",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The four sheets above are matte paper posters. A stretched canvas is not on these listings, and a heavier fine-art sheet is not on them either.</p>"
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
     "photos": {
       "type": "rich-text",
       "blocks": {
@@ -301,5 +336,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "paper", "sheets", "main", "photos", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "main", "photos", "paintings"]
 }
