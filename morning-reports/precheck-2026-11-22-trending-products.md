@@ -17,9 +17,9 @@ The public collection page, read today, lists Moon Phase, Ursa Major, Orion, the
 | Custom date-and-place star map | Later job. Not a listing. | — |
 | Moon tied to one date | Named as off this page. Not a listing. | — |
 | Twelve-sign series | Later job. Plates not drawn. | — |
-| Acrylic print | Named as a separate job. Not a listing. | — |
+| Acrylic print | Separate job. The Nov 22 unpublished draft says it is absent. Not a listing. | — |
 
-`PAINTINGS.md` says a static poster cannot take a date and a place, and it names an acrylic print as a separate job. Artwork rule already in the repo: public-domain plates and original drawings only. No NASA or ESA imagery.
+`PAINTINGS.md` on `origin/main` as of this commit says a static poster cannot take a date and a place. The same file’s 2026-11-22 section records an unpublished line, on theme `188699902267` only, that a glossy acrylic print is not on these listings. That line was not published. Artwork rule already in the repo: public-domain plates and original drawings only. No NASA or ESA imagery.
 
 Shelf prices below were read on Nov 22, 2026 from the product page. Review counts are what those pages display. A company total is not units of one poster. A price range here is what those shelves showed. It is not a price to set on this shop. A web search for “star map poster” still returned Amazon cards with September and October delivery dates, so a “bought” line on a search card was not used. The Nov 21 note is the comparison for ranks and badges.
 
@@ -65,7 +65,7 @@ Target buyer: the same anniversary and wedding buyer as item 1, when they want a
 
 Risk: this is a different production job from a Printify paper poster. Acrylic, a wood frame, and a live preview sit outside the matte-sheet page. The proof step is the same as item 1. The “Moon Phase Map” theme on this listing is their dated-moon treatment, and it was not the theme selected on this open. A badge that moves from “50+ bought in past week” to “400+ bought in past month,” with the rating count unchanged, is a change in the badge text.
 
-Already planned: `PAINTINGS.md` names an acrylic print as a separate job and keeps it off this page. It is the later custom-star-map job on a material this page does not sell.
+Already planned: `PAINTINGS.md` keeps acrylic off the live listings. The 2026-11-22 store note adds an unpublished line, on theme `188699902267` only, that a glossy acrylic print is not on these four sheets. Buyers do not see that line. It is the later custom-star-map job on a material this page does not sell.
 
 ### 4. The moon on one named date
 
@@ -244,7 +244,7 @@ Amazon search pages for star-map and night-sky posters still showed September an
 Ranked for this print-on-demand page, using the evidence above. The four paintings already named stay. They are not the top of the evidence.
 
 1. **Personalized rectangular night-sky star map** (item 1). The purchase badge that opened on a paper print is DreamTree’s “100+ bought in past month,” at $16.95 on the buy box, with 7,733 ratings and rank 1,842 in Posters & Prints. The Night Sky page is on a dated sale, $33.15 through November 30 from a $39 strikethrough, and the company care line moved from 42,076 to 42,082. Dream Big’s page opened at $32.99 with 570 ratings and rank 88, and no purchase badge. The Stars Above homepage still says over 20,000 maps sold. Named as a later job. Not on the page. Needs a proof step before any print. The search-phrase tracker changed its header from “cooling off” to “building momentum,” and the US month-on-month median moved from −33% to −2%. It still withholds a two-platform rise, and it still flags 100+ new Etsy listings a day.
-2. **Glossy acrylic framed star map** (item 3). The wall-art page whose badge moved: $39.90, 274 ratings, rank 526, “400+ bought in past month.” The Nov 21 open of the same page said “50+ bought in past week.” The rating count did not move. Same gift as item 1, on plexiglass rather than paper. Named in `PAINTINGS.md` as a separate job. Not on the page. Same proof step. Original plot only.
+2. **Glossy acrylic framed star map** (item 3). The wall-art page whose badge moved: $39.90, 274 ratings, rank 526, “400+ bought in past month.” The Nov 21 open of the same page said “50+ bought in past week.” The rating count did not move. Same gift as item 1, on plexiglass rather than paper. The Nov 22 unpublished draft says acrylic is not on these listings. Not on the live page. Same proof step. Original plot only.
 3. **The moon on one named date** (item 4). A seller page opened today shows 4,808 reviews at a $34 framed sale price, struck through from $68. Unchanged from Nov 21. The Night Sky moon page shows the same sale price as its star map and the same 3,951 schema count. `PAINTINGS.md` already keeps this off the page. The eight-phase chart answers a different search.
 4. **Antique drawn map of the moon’s face** (item 5). Best static plate that is not already on the page and that has a four-figure rating count: 1,015 ratings, $42.99 unframed at 18×24, rank 8,972 in Posters & Prints. The reviews block says “50+ viewed in past month.” The rank is stronger than the 9,935 recorded on Nov 21, and the rating count did not move. A public-domain or original drawing only. Not on the page.
 5. **Eight-phase moon chart** (item 6). Already first on the page, now at $30.00. It is the static painting the seller guide still names as the anchor of the niche. HypeToCart’s header moved from “cooling off” to “rising on one platform,” and the US month-on-month median is +7%. The page itself says one platform is short of proof. The kraft sheet that opened is $9.99 with 604 ratings and a “viewed” badge, in Wall Stickers, and its material lines disagree. Keep the page’s chart. A second moon chart would repeat a painting the page already has.
@@ -256,6 +256,7 @@ The 2027 moon calendar now reads “300+ bought in past month,” with $7.99 on 
 - Print-on-demand through Printify is the model. No inventory to hold for a new painting.
 - Public product JSON and the collection page, read on Nov 22: each of the four posters is $30.00, compare-at $39.99, one 18×24 matte variant. Variant `updated_at` is `2026-11-22T08:38:56-05:00` on all four. The price is the same as the Nov 21 read. This note does not change products.
 - The live collection read on Nov 22 names four paintings, in this order: Moon Phase, Ursa Major, Orion, Solar System. The collection text says they are not a custom night sky for a date or a city.
+- The later `PAINTINGS.md` on this branch’s parent records an unpublished acrylic sentence on theme `188699902267`, written `2026-11-22T13:40:49Z`. The live page does not contain that sentence. This note did not write the theme.
 - Nothing in this scan was pushed to Shopify, Etsy, Amazon, or TikTok. NightLens was not opened.
 
 ## Semrush
