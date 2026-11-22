@@ -300,6 +300,41 @@
         "padding_bottom": 28
       }
     },
+    "acrylic": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "Not acrylic",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Paper, not acrylic",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A glossy acrylic print is not on these listings. These four sheets stay matte paper.</p>"
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
     "photos": {
       "type": "rich-text",
       "blocks": {
@@ -371,5 +406,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "main", "photos", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "main", "photos", "paintings"]
 }
