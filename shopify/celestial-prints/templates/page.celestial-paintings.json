@@ -370,6 +370,41 @@
         "padding_bottom": 28
       }
     },
+    "sky": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "Not both hemispheres",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Two figures, not the whole sky",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A chart of the northern and southern sky together is not on these listings. Ursa Major and Orion stay single figures.</p>"
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
     "photos": {
       "type": "rich-text",
       "blocks": {
@@ -441,5 +476,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "face", "main", "photos", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "face", "sky", "main", "photos", "paintings"]
 }
