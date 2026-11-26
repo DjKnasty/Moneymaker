@@ -405,6 +405,41 @@
         "padding_bottom": 28
       }
     },
+    "year": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "Not a year calendar",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Eight phases, not every night of a year",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A year moon calendar, one small moon for each night, is not on these listings. The moon chart stays the eight phases.</p>"
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
     "photos": {
       "type": "rich-text",
       "blocks": {
@@ -476,5 +511,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "face", "sky", "main", "photos", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "face", "sky", "year", "main", "photos", "paintings"]
 }
