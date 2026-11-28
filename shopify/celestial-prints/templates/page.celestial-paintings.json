@@ -475,6 +475,41 @@
         "padding_bottom": 28
       }
     },
+    "couple": {
+      "type": "rich-text",
+      "blocks": {
+        "cap": {
+          "type": "caption",
+          "settings": {
+            "caption": "Not two names",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Single figures, not a couple map",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A couple map, two names and two signs on one sheet, is not on these listings. Ursa Major and Orion stay single figures.</p>"
+          }
+        }
+      },
+      "block_order": ["cap", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
     "photos": {
       "type": "rich-text",
       "blocks": {
@@ -546,5 +581,5 @@
       }
     }
   },
-  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "face", "sky", "year", "signs", "main", "photos", "paintings"]
+  "order": ["banner", "charts", "pair", "paper", "sheets", "material", "dated", "acrylic", "face", "sky", "year", "signs", "couple", "main", "photos", "paintings"]
 }
